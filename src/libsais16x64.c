@@ -115,7 +115,12 @@ typedef struct LIBSAIS_UNBWT_CONTEXT
     #define HAS_BUILTIN_PREFETCH
 #endif 
 
-#if defined(HAS_BUILTIN_PREFETCH)
+#if 1
+    extern void libsais16x64_prefetchr(const void *);
+    extern void libsais16x64_prefetchw(const void *);
+    #define libsais16x64_prefetchr(address) libsais16x64_prefetchr((const void *)(address))
+    #define libsais16x64_prefetchw(address) libsais16x64_prefetchw((const void *)(address))
+#elif defined(HAS_BUILTIN_PREFETCH)
     #define libsais16x64_prefetchr(address) __builtin_prefetch((const void *)(address), 0, 3)
     #define libsais16x64_prefetchw(address) __builtin_prefetch((const void *)(address), 1, 3)
 #elif defined (_M_IX86) || defined (_M_AMD64)
