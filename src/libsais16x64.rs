@@ -163,14 +163,14 @@ unsafe extern "C" fn libsais16x64_alloc_aligned(
     mut alignment: size_t,
 ) -> *mut std::ffi::c_void {
     let mut address: *mut std::ffi::c_void = malloc(
-        size.wrapping_add(::core::mem::size_of::<std::ffi::c_short>() as std::ffi::c_ulong)
+        size.wrapping_add(size_of::<std::ffi::c_short>() as std::ffi::c_ulong)
             .wrapping_add(alignment)
             .wrapping_sub(1 as std::ffi::c_int as std::ffi::c_ulong),
     );
     if !address.is_null() {
         let mut aligned_address: *mut std::ffi::c_void = libsais16x64_align_up(
             (address as ptrdiff_t
-                + ::core::mem::size_of::<std::ffi::c_short>() as std::ffi::c_ulong as ptrdiff_t)
+                + size_of::<std::ffi::c_short>() as std::ffi::c_ulong as ptrdiff_t)
                 as *mut std::ffi::c_void,
             alignment,
         );
@@ -194,8 +194,7 @@ unsafe extern "C" fn libsais16x64_alloc_thread_state(
     mut threads: sa_sint_t,
 ) -> *mut LIBSAIS_THREAD_STATE {
     let mut thread_state: *mut LIBSAIS_THREAD_STATE = libsais16x64_alloc_aligned(
-        (threads as size_t)
-            .wrapping_mul(::core::mem::size_of::<LIBSAIS_THREAD_STATE>() as std::ffi::c_ulong),
+        (threads as size_t).wrapping_mul(size_of::<LIBSAIS_THREAD_STATE>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut LIBSAIS_THREAD_STATE;
     let mut thread_buckets: *mut sa_sint_t = libsais16x64_alloc_aligned(
@@ -205,13 +204,13 @@ unsafe extern "C" fn libsais16x64_alloc_thread_state(
                 (((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong,
             )
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut sa_sint_t;
     let mut thread_cache: *mut LIBSAIS_THREAD_CACHE = libsais16x64_alloc_aligned(
         (threads as size_t)
             .wrapping_mul(2097184 as std::ffi::c_int as std::ffi::c_ulong)
-            .wrapping_mul(::core::mem::size_of::<LIBSAIS_THREAD_CACHE>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<LIBSAIS_THREAD_CACHE>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut LIBSAIS_THREAD_CACHE;
     if !thread_state.is_null() && !thread_buckets.is_null() && !thread_cache.is_null() {
@@ -487,7 +486,7 @@ unsafe extern "C" fn libsais16x64_count_lms_suffixes_32s_2k(
         0 as std::ffi::c_int,
         (2 as std::ffi::c_int as std::ffi::c_ulong)
             .wrapping_mul(k as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut i: sa_sint_t = n - 2 as std::ffi::c_int as std::ffi::c_long;
     let mut f0: fast_uint_t = 1 as std::ffi::c_int as fast_uint_t;
@@ -587,7 +586,7 @@ unsafe extern "C" fn libsais16x64_count_and_gather_lms_suffixes_16u(
                 (((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong,
             )
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut m: fast_sint_t =
         omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long;
@@ -727,7 +726,7 @@ unsafe extern "C" fn libsais16x64_count_and_gather_lms_suffixes_32s_4k(
         0 as std::ffi::c_int,
         (4 as std::ffi::c_int as std::ffi::c_ulong)
             .wrapping_mul(k as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut m: fast_sint_t =
         omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long;
@@ -860,7 +859,7 @@ unsafe extern "C" fn libsais16x64_count_and_gather_lms_suffixes_32s_2k(
         0 as std::ffi::c_int,
         (2 as std::ffi::c_int as std::ffi::c_ulong)
             .wrapping_mul(k as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut m: fast_sint_t =
         omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long;
@@ -993,7 +992,7 @@ unsafe extern "C" fn libsais16x64_count_and_gather_compacted_lms_suffixes_32s_2k
         0 as std::ffi::c_int,
         (2 as std::ffi::c_int as std::ffi::c_ulong)
             .wrapping_mul(k as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut m: fast_sint_t =
         omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long;
@@ -1264,7 +1263,7 @@ unsafe extern "C" fn libsais16x64_count_suffixes_32s(
     memset(
         buckets as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (k as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (k as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut i: fast_sint_t = 0;
     let mut j: fast_sint_t = 0;
@@ -1531,7 +1530,7 @@ unsafe extern "C" fn libsais16x64_initialize_buckets_start_and_end_32s_2k(
         buckets as *const std::ffi::c_void,
         (k as size_t)
             .wrapping_sub(1 as std::ffi::c_int as std::ffi::c_ulong)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_initialize_buckets_start_32s_1k(
@@ -4639,7 +4638,7 @@ unsafe extern "C" fn libsais16x64_induce_partial_order_16u_omp(
                 (((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong,
             )
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     if flags & 2 as std::ffi::c_int as std::ffi::c_long != 0 {
         *buckets.offset(
@@ -4702,7 +4701,7 @@ unsafe extern "C" fn libsais16x64_induce_partial_order_16u_omp(
                     (((1 as std::ffi::c_int as fast_sint_t) << 1 as std::ffi::c_int)
                         + 1 as std::ffi::c_int as fast_sint_t) as isize,
                 ) - 1 as std::ffi::c_int as std::ffi::c_long) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             *SA.offset(0 as std::ffi::c_int as isize) = first_lms_suffix
                 | (-(9223372036854775807 as std::ffi::c_long)
@@ -4776,7 +4775,7 @@ unsafe extern "C" fn libsais16x64_induce_partial_order_32s_4k_omp(
         0 as std::ffi::c_int,
         (2 as std::ffi::c_int as std::ffi::c_ulong)
             .wrapping_mul(k as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut d: sa_sint_t = libsais16x64_partial_sorting_scan_left_to_right_32s_4k_omp(
         T,
@@ -5058,7 +5057,7 @@ unsafe extern "C" fn libsais16x64_renumber_and_gather_lms_suffixes_omp(
         &mut *SA.offset(m as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
         (n as size_t >> 1 as std::ffi::c_int)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut name: sa_sint_t =
         libsais16x64_renumber_lms_suffixes_16u_omp(SA, m, threads, thread_state);
@@ -5367,7 +5366,7 @@ unsafe extern "C" fn libsais16x64_renumber_and_mark_distinct_lms_suffixes_32s_4k
         &mut *SA.offset(m as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
         (n as size_t >> 1 as std::ffi::c_int)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut name: sa_sint_t =
         libsais16x64_renumber_distinct_lms_suffixes_32s_4k_omp(SA, m, threads, thread_state);
@@ -5392,7 +5391,7 @@ unsafe extern "C" fn libsais16x64_renumber_and_mark_distinct_lms_suffixes_32s_1k
         (n as size_t)
             .wrapping_sub(m as size_t)
             .wrapping_sub(m as size_t)
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     let mut i: fast_sint_t = 0;
     let mut j: fast_sint_t = 0;
@@ -5689,8 +5688,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_16u(
                 memset(
                     &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     0 as std::ffi::c_int,
-                    ((j - i) as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    ((j - i) as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             j = i - l;
@@ -5698,8 +5696,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_16u(
             memmove(
                 &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                 &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                (l as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         c -= 1;
@@ -5707,7 +5704,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_16u(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
     if flags & 2 as std::ffi::c_int as std::ffi::c_long != 0 {
         let fresh136 = &mut (*buckets.offset(
@@ -5745,8 +5742,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_4k(
                 memset(
                     &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     0 as std::ffi::c_int,
-                    ((j - i) as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    ((j - i) as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             j = i - l;
@@ -5754,8 +5750,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_4k(
             memmove(
                 &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                 &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                (l as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         c -= 1;
@@ -5763,7 +5758,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_4k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_2k(
@@ -5796,7 +5791,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_2k(
                         &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                         0 as std::ffi::c_int,
                         ((j - i) as size_t)
-                            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                     );
                 }
                 j = i - l;
@@ -5804,8 +5799,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_2k(
                 memmove(
                     &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                    (l as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             c -= ((1 as std::ffi::c_int as fast_sint_t) << 1 as std::ffi::c_int)
@@ -5815,7 +5809,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_2k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
@@ -5860,7 +5854,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
                     as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
                 ((l - *buckets.offset(c as isize)) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             l = *buckets.offset(c as isize);
         }
@@ -5874,7 +5868,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
                     as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
                 ((l - *buckets.offset(c as isize)) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             l = *buckets.offset(c as isize);
         }
@@ -5888,7 +5882,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
                     as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
                 ((l - *buckets.offset(c as isize)) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             l = *buckets.offset(c as isize);
         }
@@ -5902,7 +5896,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
                     as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
                 ((l - *buckets.offset(c as isize)) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             l = *buckets.offset(c as isize);
         }
@@ -5919,7 +5913,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
                     as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
                 ((l - *buckets.offset(c as isize)) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             l = *buckets.offset(c as isize);
         }
@@ -5930,7 +5924,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_interval_32s_1k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (l as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_6k(
@@ -5955,8 +5949,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_6k(
                 memset(
                     &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     0 as std::ffi::c_int,
-                    ((j - i) as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    ((j - i) as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             j = i - l;
@@ -5964,8 +5957,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_6k(
             memmove(
                 &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                 &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                (l as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         c -= 1;
@@ -5973,7 +5965,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_6k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_4k(
@@ -5998,8 +5990,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_4k(
                 memset(
                     &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     0 as std::ffi::c_int,
-                    ((j - i) as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    ((j - i) as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             j = i - l;
@@ -6007,8 +5998,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_4k(
             memmove(
                 &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                 &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                (l as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         c -= 1;
@@ -6016,7 +6006,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_4k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_2k(
@@ -6046,7 +6036,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_2k(
                         &mut *SA.offset(i as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                         0 as std::ffi::c_int,
                         ((j - i) as size_t)
-                            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                     );
                 }
                 j = i - l;
@@ -6054,8 +6044,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_2k(
                 memmove(
                     &mut *SA.offset(j as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     &mut *SA.offset(m as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-                    (l as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    (l as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             c -= ((1 as std::ffi::c_int as fast_sint_t) << 1 as std::ffi::c_int)
@@ -6065,7 +6054,7 @@ unsafe extern "C" fn libsais16x64_place_lms_suffixes_histogram_32s_2k(
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         0 as std::ffi::c_int,
-        (j as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (j as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_final_bwt_scan_left_to_right_16u(
@@ -7517,7 +7506,7 @@ unsafe extern "C" fn libsais16x64_clear_lms_suffixes_omp(
                 0 as std::ffi::c_int,
                 (*bucket_end.offset(c as isize) as size_t)
                     .wrapping_sub(*bucket_start.offset(c as isize) as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         c += 1;
@@ -8150,7 +8139,7 @@ unsafe extern "C" fn libsais16x64_compact_unique_and_nonunique_lms_suffixes_32s_
     memcpy(
         &mut *SA.offset((n + fs - m) as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
         &mut *SA.offset((m - f) as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-        (f as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+        (f as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
     );
 }
 unsafe extern "C" fn libsais16x64_compact_lms_suffixes_32s_omp(
@@ -8413,7 +8402,7 @@ unsafe extern "C" fn libsais16x64_reconstruct_compacted_lms_suffixes_32s_2k_omp(
             &mut *SA.offset((n - m - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as *mut sa_sint_t as *mut std::ffi::c_void,
             &mut *SA.offset((n + fs - m) as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-            (f as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (f as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_count_and_gather_compacted_lms_suffixes_32s_2k_omp(
             T,
@@ -8432,13 +8421,13 @@ unsafe extern "C" fn libsais16x64_reconstruct_compacted_lms_suffixes_32s_2k_omp(
                 as *const std::ffi::c_void,
             (m as size_t)
                 .wrapping_sub(f as size_t)
-                .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         memset(
             &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
                 as *mut std::ffi::c_void,
             0 as std::ffi::c_int,
-            (m as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (m as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_merge_compacted_lms_suffixes_32s_omp(T, SA, n, m, f, threads, thread_state);
     } else {
@@ -8469,7 +8458,7 @@ unsafe extern "C" fn libsais16x64_reconstruct_compacted_lms_suffixes_32s_1k_omp(
             &mut *SA.offset((n - m - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as *mut sa_sint_t as *mut std::ffi::c_void,
             &mut *SA.offset((n + fs - m) as isize) as *mut sa_sint_t as *const std::ffi::c_void,
-            (f as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (f as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_gather_compacted_lms_suffixes_32s(T, SA, n);
         libsais16x64_reconstruct_lms_suffixes_omp(SA, n, m - f, threads);
@@ -8480,13 +8469,13 @@ unsafe extern "C" fn libsais16x64_reconstruct_compacted_lms_suffixes_32s_1k_omp(
                 as *const std::ffi::c_void,
             (m as size_t)
                 .wrapping_sub(f as size_t)
-                .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         memset(
             &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
                 as *mut std::ffi::c_void,
             0 as std::ffi::c_int,
-            (m as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (m as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_merge_compacted_lms_suffixes_32s_omp(T, SA, n, m, f, threads, thread_state);
     } else {
@@ -8635,8 +8624,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 &mut *SA.offset(
                     (n + fs - 6 as std::ffi::c_int as std::ffi::c_long * k - alignment) as isize,
                 ) as *mut sa_sint_t as *const std::ffi::c_void,
-                (alignment as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (alignment as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             ) as *mut sa_sint_t
         } else {
             &mut *SA.offset((n + fs - 6 as std::ffi::c_int as std::ffi::c_long * k) as isize)
@@ -8665,7 +8653,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 0 as std::ffi::c_int,
                 (n as size_t)
                     .wrapping_sub(m as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
             let mut first_lms_suffix: sa_sint_t = *SA.offset((n - m) as isize);
             let mut left_suffixes_count: sa_sint_t =
@@ -8698,8 +8686,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 memset(
                     &mut *SA.offset((n - m) as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                     0 as std::ffi::c_int,
-                    (m as size_t)
-                        .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    (m as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 );
             }
             libsais16x64_initialize_buckets_for_partial_sorting_32s_6k(
@@ -8815,8 +8802,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 &mut *SA.offset(
                     (n + fs - 4 as std::ffi::c_int as std::ffi::c_long * k - alignment_0) as isize,
                 ) as *mut sa_sint_t as *const std::ffi::c_void,
-                (alignment_0 as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (alignment_0 as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             ) as *mut sa_sint_t
         } else {
             &mut *SA.offset((n + fs - 4 as std::ffi::c_int as std::ffi::c_long * k) as isize)
@@ -8954,8 +8940,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 &mut *SA.offset(
                     (n + fs - 2 as std::ffi::c_int as std::ffi::c_long * k - alignment_1) as isize,
                 ) as *mut sa_sint_t as *const std::ffi::c_void,
-                (alignment_1 as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (alignment_1 as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             ) as *mut sa_sint_t
         } else {
             &mut *SA.offset((n + fs - 2 as std::ffi::c_int as std::ffi::c_long * k) as isize)
@@ -9068,8 +9053,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
     } else {
         let mut buffer: *mut sa_sint_t = if fs < k {
             libsais16x64_alloc_aligned(
-                (k as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (k as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                 4096 as std::ffi::c_int as size_t,
             ) as *mut sa_sint_t
         } else {
@@ -9084,8 +9068,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
             libsais16x64_align_up(
                 &mut *SA.offset((n + fs - k - alignment_2) as isize) as *mut sa_sint_t
                     as *const std::ffi::c_void,
-                (alignment_2 as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (alignment_2 as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             ) as *mut sa_sint_t
         } else if fs >= k {
             &mut *SA.offset((n + fs - k) as isize) as *mut sa_sint_t
@@ -9098,7 +9081,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
         memset(
             SA as *mut std::ffi::c_void,
             0 as std::ffi::c_int,
-            (n as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (n as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_count_suffixes_32s(T, n, k, buckets_2);
         libsais16x64_initialize_buckets_end_32s_1k(k, buckets_2);
@@ -9159,8 +9142,7 @@ unsafe extern "C" fn libsais16x64_main_32s_recursion(
                 );
                 if buckets_2.is_null() {
                     buffer = libsais16x64_alloc_aligned(
-                        (k as size_t)
-                            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                        (k as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
                         4096 as std::ffi::c_int as size_t,
                     ) as *mut sa_sint_t;
                     buckets_2 = buffer;
@@ -9252,7 +9234,7 @@ unsafe extern "C" fn libsais16x64_main_16u(
                 0 as std::ffi::c_int,
                 (n as size_t)
                     .wrapping_sub(m as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         libsais16x64_radix_sort_lms_suffixes_16u_omp(
@@ -9271,8 +9253,7 @@ unsafe extern "C" fn libsais16x64_main_16u(
             memset(
                 &mut *SA.offset((n - m) as isize) as *mut sa_sint_t as *mut std::ffi::c_void,
                 0 as std::ffi::c_int,
-                (m as size_t)
-                    .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+                (m as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
             );
         }
         libsais16x64_initialize_buckets_for_partial_sorting_16u(
@@ -9318,7 +9299,7 @@ unsafe extern "C" fn libsais16x64_main_16u(
         memset(
             SA as *mut std::ffi::c_void,
             0 as std::ffi::c_int,
-            (n as size_t).wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            (n as size_t).wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         );
     }
     libsais16x64_induce_final_order_16u_omp(
@@ -9357,7 +9338,7 @@ unsafe extern "C" fn libsais16x64_main(
                 (((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong,
             )
-            .wrapping_mul(::core::mem::size_of::<sa_sint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_sint_t>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut sa_sint_t;
     let mut index: sa_sint_t = if !buckets.is_null()
@@ -9480,7 +9461,7 @@ pub unsafe extern "C" fn libsais16x64(
                 0 as std::ffi::c_int,
                 ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong)
-                    .wrapping_mul(::core::mem::size_of::<int64_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<int64_t>() as std::ffi::c_ulong),
             );
         }
         if n == 1 as std::ffi::c_int as std::ffi::c_long {
@@ -9560,7 +9541,7 @@ pub unsafe extern "C" fn libsais16x64_gsa(
                 0 as std::ffi::c_int,
                 ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong)
-                    .wrapping_mul(::core::mem::size_of::<int64_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<int64_t>() as std::ffi::c_ulong),
             );
         }
         if n == 1 as std::ffi::c_int as std::ffi::c_long {
@@ -9661,7 +9642,7 @@ pub unsafe extern "C" fn libsais16x64_bwt(
                 0 as std::ffi::c_int,
                 ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong)
-                    .wrapping_mul(::core::mem::size_of::<int64_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<int64_t>() as std::ffi::c_ulong),
             );
         }
         if n == 1 as std::ffi::c_int as std::ffi::c_long {
@@ -9758,7 +9739,7 @@ pub unsafe extern "C" fn libsais16x64_bwt_aux(
                 0 as std::ffi::c_int,
                 ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                     as std::ffi::c_ulong)
-                    .wrapping_mul(::core::mem::size_of::<int64_t>() as std::ffi::c_ulong),
+                    .wrapping_mul(size_of::<int64_t>() as std::ffi::c_ulong),
             );
         }
         if n == 1 as std::ffi::c_int as std::ffi::c_long {
@@ -9936,7 +9917,7 @@ unsafe extern "C" fn libsais16x64_unbwt_init_single(
             freq as *const std::ffi::c_void,
             ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                 as std::ffi::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<sa_uint_t>() as std::ffi::c_ulong),
+                .wrapping_mul(size_of::<sa_uint_t>() as std::ffi::c_ulong),
         );
     } else {
         memset(
@@ -9944,7 +9925,7 @@ unsafe extern "C" fn libsais16x64_unbwt_init_single(
             0 as std::ffi::c_int,
             ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                 as std::ffi::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<sa_uint_t>() as std::ffi::c_ulong),
+                .wrapping_mul(size_of::<sa_uint_t>() as std::ffi::c_ulong),
         );
         libsais16x64_unbwt_compute_histogram(T, n, bucket2);
     }
@@ -10979,13 +10960,13 @@ unsafe extern "C" fn libsais16x64_unbwt_main(
     let mut bucket2: *mut sa_uint_t = libsais16x64_alloc_aligned(
         ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
             as std::ffi::c_ulong)
-            .wrapping_mul(::core::mem::size_of::<sa_uint_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<sa_uint_t>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut sa_uint_t;
     let mut fastbits: *mut uint16_t = libsais16x64_alloc_aligned(
         (1 as std::ffi::c_int as size_t)
             .wrapping_add((n >> shift) as size_t)
-            .wrapping_mul(::core::mem::size_of::<uint16_t>() as std::ffi::c_ulong),
+            .wrapping_mul(size_of::<uint16_t>() as std::ffi::c_ulong),
         4096 as std::ffi::c_int as size_t,
     ) as *mut uint16_t;
     let mut buckets: *mut sa_uint_t = if threads > 1 as std::ffi::c_int as std::ffi::c_long
@@ -10997,7 +10978,7 @@ unsafe extern "C" fn libsais16x64_unbwt_main(
                     (((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
                         as std::ffi::c_ulong,
                 )
-                .wrapping_mul(::core::mem::size_of::<sa_uint_t>() as std::ffi::c_ulong),
+                .wrapping_mul(size_of::<sa_uint_t>() as std::ffi::c_ulong),
             4096 as std::ffi::c_int as size_t,
         ) as *mut sa_uint_t
     } else {
