@@ -1047,40 +1047,29 @@ unsafe extern "C" fn libsais_count_suffixes_32s(
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
 ) {
-    let prefetch_distance: fast_sint_t = 32 as fast_sint_t;
+    let prefetch_distance: fast_sint_t = 32;
     memset(
         buckets as *mut c_void,
         0,
         (k as size_t).wrapping_mul(size_of::<sa_sint_t>() as c_ulong),
     );
     let mut i: fast_sint_t = 0;
-    let mut j: fast_sint_t = 0;
-    i = 0 as fast_sint_t;
-    j = n as fast_sint_t - 7;
+    let mut j: fast_sint_t = n as fast_sint_t - 7;
     while i < j {
         libsais_prefetchr(T.offset((i + prefetch_distance) as isize));
-        let fresh33 = &mut (*buckets.offset(*T.offset(i as isize) as isize));
-        *fresh33 += 1;
-        let fresh34 = &mut (*buckets.offset(*T.offset((i + 1) as isize) as isize));
-        *fresh34 += 1;
-        let fresh35 = &mut (*buckets.offset(*T.offset((i + 2) as isize) as isize));
-        *fresh35 += 1;
-        let fresh36 = &mut (*buckets.offset(*T.offset((i + 3) as isize) as isize));
-        *fresh36 += 1;
-        let fresh37 = &mut (*buckets.offset(*T.offset((i + 4) as isize) as isize));
-        *fresh37 += 1;
-        let fresh38 = &mut (*buckets.offset(*T.offset((i + 5) as isize) as isize));
-        *fresh38 += 1;
-        let fresh39 = &mut (*buckets.offset(*T.offset((i + 6) as isize) as isize));
-        *fresh39 += 1;
-        let fresh40 = &mut (*buckets.offset(*T.offset((i + 7) as isize) as isize));
-        *fresh40 += 1;
+        *buckets.offset(*T.offset(i as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 1) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 2) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 3) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 4) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 5) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 6) as isize) as isize) += 1;
+        *buckets.offset(*T.offset((i + 7) as isize) as isize) += 1;
         i += 8;
     }
     j += 7;
     while i < j {
-        let fresh41 = &mut (*buckets.offset(*T.offset(i as isize) as isize));
-        *fresh41 += 1;
+        *buckets.offset(*T.offset(i as isize) as isize) += 1;
         i += 1;
     }
 }
