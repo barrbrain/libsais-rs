@@ -23,5 +23,5 @@ Please see the file LICENSE for full copyright information.
 
 mod libsais;
 mod libsais16;
-mod libsais64;
 mod libsais16x64;
+mod libsais64;
