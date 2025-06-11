@@ -192,7 +192,6 @@ unsafe extern "C" fn libsais16_alloc_thread_state(
             *fresh1 = thread_cache;
             thread_cache = thread_cache.offset(2097184 as std::ffi::c_int as isize);
             t += 1;
-            t;
         }
         return thread_state;
     }
@@ -280,7 +279,6 @@ unsafe extern "C" fn libsais16_flip_suffix_markers_omp(
         let ref mut fresh2 = *SA.offset(i as isize);
         *fresh2 ^= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         i += 1;
-        i;
     }
 }
 unsafe extern "C" fn libsais16_gather_lms_suffixes_16u(
@@ -308,7 +306,6 @@ unsafe extern "C" fn libsais16_gather_lms_suffixes_16u(
             }
         {
             j += 1;
-            j;
         }
         let mut f0: fast_uint_t = (c0 >= c1) as std::ffi::c_int as fast_uint_t;
         let mut f1: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
@@ -595,7 +592,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh3 += 1;
-        *fresh3;
         c0 = *T.offset((i - 1 as std::ffi::c_int) as isize) as fast_sint_t;
         f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
         let ref mut fresh4 = *buckets
@@ -604,7 +600,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh4 += 1;
-        *fresh4;
         c1 = *T.offset((i - 2 as std::ffi::c_int) as isize) as fast_sint_t;
         f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
         let ref mut fresh5 = *buckets
@@ -613,7 +608,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh5 += 1;
-        *fresh5;
         c0 = *T.offset((i - 3 as std::ffi::c_int) as isize) as fast_sint_t;
         f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
         let ref mut fresh6 = *buckets
@@ -622,7 +616,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh6 += 1;
-        *fresh6;
         i -= 4 as std::ffi::c_int;
     }
     while i >= 0 as std::ffi::c_int {
@@ -636,7 +629,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh7 += 1;
-        *fresh7;
         i -= 1 as std::ffi::c_int;
     }
     let ref mut fresh8 = *buckets
@@ -645,7 +637,6 @@ unsafe extern "C" fn libsais16_count_lms_suffixes_32s_2k(
                 .wrapping_add(0 as std::ffi::c_int as std::ffi::c_ulong) as isize,
         );
     *fresh8 += 1;
-    *fresh8;
 }
 unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
     mut T: *const uint16_t,
@@ -680,7 +671,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
             }
         {
             j += 1;
-            j;
         }
         let mut f0: fast_uint_t = (c0 >= c1) as std::ffi::c_int as fast_uint_t;
         let mut f1: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
@@ -706,7 +696,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                         .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
                 );
             *fresh9 += 1;
-            *fresh9;
             c0 = *T.offset((i - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -722,7 +711,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh10 += 1;
-            *fresh10;
             c1 = *T.offset((i - 2 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -738,7 +726,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                         .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
                 );
             *fresh11 += 1;
-            *fresh11;
             c0 = *T.offset((i - 3 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -754,7 +741,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh12 += 1;
-            *fresh12;
             i -= 4 as std::ffi::c_int as std::ffi::c_long;
         }
         j -= 3 as std::ffi::c_int as std::ffi::c_long;
@@ -775,7 +761,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh13 += 1;
-            *fresh13;
             i -= 1 as std::ffi::c_int as std::ffi::c_long;
         }
         c1 = (if i >= 0 as std::ffi::c_int as std::ffi::c_long {
@@ -796,7 +781,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_16u(
                     .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
             );
         *fresh14 += 1;
-        *fresh14;
     }
     return (omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long
         - m) as sa_sint_t;
@@ -865,7 +849,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
             }
         {
             j += 1;
-            j;
         }
         let mut f0: fast_uint_t = (c0 >= c1) as std::ffi::c_int as fast_uint_t;
         let mut f1: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
@@ -936,7 +919,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                         .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
                 );
             *fresh15 += 1;
-            *fresh15;
             c0 = *T.offset((i - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -952,7 +934,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh16 += 1;
-            *fresh16;
             c1 = *T.offset((i - 2 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -968,7 +949,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                         .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
                 );
             *fresh17 += 1;
-            *fresh17;
             c0 = *T.offset((i - 3 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -984,7 +964,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh18 += 1;
-            *fresh18;
             i -= 4 as std::ffi::c_int as std::ffi::c_long;
         }
         j -= prefetch_distance + 3 as std::ffi::c_int as std::ffi::c_long;
@@ -1005,7 +984,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                         .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
                 );
             *fresh19 += 1;
-            *fresh19;
             i -= 1 as std::ffi::c_int as std::ffi::c_long;
         }
         c1 = (if i >= 0 as std::ffi::c_int as std::ffi::c_long {
@@ -1026,7 +1004,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_4k(
                     .wrapping_add(f0.wrapping_add(f0).wrapping_add(f1)) as isize,
             );
         *fresh20 += 1;
-        *fresh20;
     }
     return (omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long
         - m) as sa_sint_t;
@@ -1062,7 +1039,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
             }
         {
             j += 1;
-            j;
         }
         let mut f0: fast_uint_t = (c0 >= c1) as std::ffi::c_int as fast_uint_t;
         let mut f1: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
@@ -1133,7 +1109,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh21 += 1;
-            *fresh21;
             c0 = *T.offset((i - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1149,7 +1124,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh22 += 1;
-            *fresh22;
             c1 = *T.offset((i - 2 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1165,7 +1139,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh23 += 1;
-            *fresh23;
             c0 = *T.offset((i - 3 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1181,7 +1154,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh24 += 1;
-            *fresh24;
             i -= 4 as std::ffi::c_int as std::ffi::c_long;
         }
         j -= prefetch_distance + 3 as std::ffi::c_int as std::ffi::c_long;
@@ -1202,7 +1174,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh25 += 1;
-            *fresh25;
             i -= 1 as std::ffi::c_int as std::ffi::c_long;
         }
         c1 = (if i >= 0 as std::ffi::c_int as std::ffi::c_long {
@@ -1223,7 +1194,6 @@ unsafe extern "C" fn libsais16_count_and_gather_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh26 += 1;
-        *fresh26;
     }
     return (omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long
         - m) as sa_sint_t;
@@ -1259,7 +1229,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
             }
         {
             j += 1;
-            j;
         }
         let mut f0: fast_uint_t = (c0 >= c1) as std::ffi::c_int as fast_uint_t;
         let mut f1: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
@@ -1339,7 +1308,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh27 += 1;
-            *fresh27;
             c0 = *T.offset((i - 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1360,7 +1328,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh28 += 1;
-            *fresh28;
             c1 = *T.offset((i - 2 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1381,7 +1348,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh29 += 1;
-            *fresh29;
             c0 = *T.offset((i - 3 as std::ffi::c_int as std::ffi::c_long) as isize)
                 as fast_sint_t;
             f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -1402,7 +1368,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh30 += 1;
-            *fresh30;
             i -= 4 as std::ffi::c_int as std::ffi::c_long;
         }
         j -= prefetch_distance + 3 as std::ffi::c_int as std::ffi::c_long;
@@ -1428,7 +1393,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                         as isize,
                 );
             *fresh31 += 1;
-            *fresh31;
             i -= 1 as std::ffi::c_int as std::ffi::c_long;
         }
         c1 = (if i >= 0 as std::ffi::c_int as std::ffi::c_long {
@@ -1454,7 +1418,6 @@ unsafe extern "C" fn libsais16_count_and_gather_compacted_lms_suffixes_32s_2k(
                     as isize,
             );
         *fresh32 += 1;
-        *fresh32;
     }
     return (omp_block_start + omp_block_size - 1 as std::ffi::c_int as std::ffi::c_long
         - m) as sa_sint_t;
@@ -1614,63 +1577,54 @@ unsafe extern "C" fn libsais16_count_suffixes_32s(
                     as isize,
             );
         *fresh33 += 1;
-        *fresh33;
         let ref mut fresh34 = *buckets
             .offset(
                 *T.offset((i + 1 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh34 += 1;
-        *fresh34;
         let ref mut fresh35 = *buckets
             .offset(
                 *T.offset((i + 2 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh35 += 1;
-        *fresh35;
         let ref mut fresh36 = *buckets
             .offset(
                 *T.offset((i + 3 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh36 += 1;
-        *fresh36;
         let ref mut fresh37 = *buckets
             .offset(
                 *T.offset((i + 4 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh37 += 1;
-        *fresh37;
         let ref mut fresh38 = *buckets
             .offset(
                 *T.offset((i + 5 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh38 += 1;
-        *fresh38;
         let ref mut fresh39 = *buckets
             .offset(
                 *T.offset((i + 6 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh39 += 1;
-        *fresh39;
         let ref mut fresh40 = *buckets
             .offset(
                 *T.offset((i + 7 as std::ffi::c_int as std::ffi::c_long) as isize)
                     as isize,
             );
         *fresh40 += 1;
-        *fresh40;
         i += 8 as std::ffi::c_int as std::ffi::c_long;
     }
     j += 7 as std::ffi::c_int as std::ffi::c_long;
     while i < j {
         let ref mut fresh41 = *buckets.offset(*T.offset(i as isize) as isize);
         *fresh41 += 1;
-        *fresh41;
         i += 1 as std::ffi::c_int as std::ffi::c_long;
     }
 }
@@ -1995,7 +1949,6 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_lms_suffixes_radix_sort_16
                     .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
             );
         *fresh42 -= 1;
-        *fresh42;
     }
     let ref mut fresh43 = *buckets
         .offset(
@@ -2003,7 +1956,6 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_lms_suffixes_radix_sort_16
                 .wrapping_add(f0.wrapping_add(f0)) as isize,
         );
     *fresh43 -= 1;
-    *fresh43;
     let mut temp_bucket: *mut sa_sint_t = &mut *buckets
         .offset(
             (4 as std::ffi::c_int
@@ -2063,14 +2015,12 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_lms_suffixes_radix_sort_32
                 + 0 as std::ffi::c_int) as isize,
         );
     *fresh44 += 1;
-    *fresh44;
     let ref mut fresh45 = *buckets
         .offset(
             ((*T.offset(first_lms_suffix as isize) << 1 as std::ffi::c_int)
                 + 1 as std::ffi::c_int) as isize,
         );
     *fresh45 -= 1;
-    *fresh45;
     let mut i: fast_sint_t = 0;
     let mut sum0: sa_sint_t = 0 as std::ffi::c_int;
     let mut sum1: sa_sint_t = 0 as std::ffi::c_int;
@@ -2142,7 +2092,6 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_lms_suffixes_radix_sort_32
                     .wrapping_add(f1.wrapping_add(f1).wrapping_add(f0)) as isize,
             );
         *fresh46 -= 1;
-        *fresh46;
     }
     let ref mut fresh47 = *buckets
         .offset(
@@ -2150,7 +2099,6 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_lms_suffixes_radix_sort_32
                 .wrapping_add(f0.wrapping_add(f0)) as isize,
         );
     *fresh47 -= 1;
-    *fresh47;
     let mut temp_bucket: *mut sa_sint_t = &mut *buckets
         .offset((4 as std::ffi::c_int as std::ffi::c_long * k as fast_sint_t) as isize)
         as *mut sa_sint_t;
@@ -2203,14 +2151,12 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_radix_and_partial_sorting_
                 + 0 as std::ffi::c_int) as isize,
         );
     *fresh48 += 1;
-    *fresh48;
     let ref mut fresh49 = *buckets
         .offset(
             ((*T.offset(first_lms_suffix as isize) << 1 as std::ffi::c_int)
                 + 1 as std::ffi::c_int) as isize,
         );
     *fresh49 -= 1;
-    *fresh49;
     let mut i: fast_sint_t = 0;
     let mut j: fast_sint_t = 0;
     let mut sum0: sa_sint_t = 0 as std::ffi::c_int;
@@ -2385,7 +2331,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_16u_omp(
                         << 8 as std::ffi::c_int)) as isize,
             );
         *fresh55 -= 1;
-        *fresh55;
     }
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
     if omp_num_threads == 1 as std::ffi::c_int as std::ffi::c_long {
@@ -2846,7 +2791,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_32s_1k(
             *fresh66 -= 1;
             *SA.offset(*fresh66 as isize) = i + 1 as std::ffi::c_int;
             m += 1;
-            m;
         }
         c0 = *T.offset((i - 1 as std::ffi::c_int) as isize) as fast_sint_t;
         f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -2856,7 +2800,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_32s_1k(
             *fresh67 -= 1;
             *SA.offset(*fresh67 as isize) = i - 0 as std::ffi::c_int;
             m += 1;
-            m;
         }
         c1 = *T.offset((i - 2 as std::ffi::c_int) as isize) as fast_sint_t;
         f1 = (c1 > c0 - f0 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -2866,7 +2809,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_32s_1k(
             *fresh68 -= 1;
             *SA.offset(*fresh68 as isize) = i - 1 as std::ffi::c_int;
             m += 1;
-            m;
         }
         c0 = *T.offset((i - 3 as std::ffi::c_int) as isize) as fast_sint_t;
         f0 = (c0 > c1 - f1 as fast_sint_t) as std::ffi::c_int as fast_uint_t;
@@ -2876,7 +2818,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_32s_1k(
             *fresh69 -= 1;
             *SA.offset(*fresh69 as isize) = i - 2 as std::ffi::c_int;
             m += 1;
-            m;
         }
         i -= 4 as std::ffi::c_int;
     }
@@ -2891,7 +2832,6 @@ unsafe extern "C" fn libsais16_radix_sort_lms_suffixes_32s_1k(
             *fresh70 -= 1;
             *SA.offset(*fresh70 as isize) = i + 1 as std::ffi::c_int;
             m += 1;
-            m;
         }
         i -= 1 as std::ffi::c_int;
     }
@@ -3183,7 +3123,6 @@ unsafe extern "C" fn libsais16_initialize_buckets_for_partial_sorting_16u(
                 .wrapping_add(1 as std::ffi::c_int as std::ffi::c_ulong) as isize,
         );
     *fresh81 += 1;
-    *fresh81;
     let mut i: fast_sint_t = 0;
     let mut j: fast_sint_t = 0;
     let mut sum0: sa_sint_t = left_suffixes_count + 1 as std::ffi::c_int;
@@ -6848,7 +6787,6 @@ unsafe extern "C" fn libsais16_renumber_and_mark_distinct_lms_suffixes_32s_1k_om
     }
     *SAm.offset((p >> 1 as std::ffi::c_int) as isize) = name | pdiff;
     name += 1;
-    name;
     if name <= m {
         libsais16_mark_distinct_lms_suffixes_32s_omp(SA, n, m, threads);
     }
@@ -6981,7 +6919,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_interval_16u(
                         << 8 as std::ffi::c_int)) as isize,
             );
         *fresh135 -= 1;
-        *fresh135;
     }
     let mut bucket_end: *const sa_sint_t = &mut *buckets
         .offset(
@@ -7030,7 +6967,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_interval_16u(
             );
         }
         c -= 1;
-        c;
     }
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
@@ -7047,7 +6983,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_interval_16u(
                         << 8 as std::ffi::c_int)) as isize,
             );
         *fresh136 += 1;
-        *fresh136;
     }
 }
 unsafe extern "C" fn libsais16_place_lms_suffixes_interval_32s_4k(
@@ -7100,7 +7035,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_interval_32s_4k(
             );
         }
         c -= 1;
-        c;
     }
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
@@ -7378,7 +7312,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_histogram_32s_6k(
             );
         }
         c -= 1;
-        c;
     }
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
@@ -7432,7 +7365,6 @@ unsafe extern "C" fn libsais16_place_lms_suffixes_histogram_32s_4k(
             );
         }
         c -= 1;
-        c;
     }
     memset(
         &mut *SA.offset(0 as std::ffi::c_int as isize) as *mut sa_sint_t
@@ -7536,7 +7468,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7553,7 +7484,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7566,7 +7496,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_left_to_right_16u(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             *SA
                 .offset(
                     (i + 0 as std::ffi::c_int as std::ffi::c_long) as isize,
@@ -7595,7 +7524,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_left_to_right_16u(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             *SA
                 .offset(
                     (i + 1 as std::ffi::c_int as std::ffi::c_long) as isize,
@@ -7624,7 +7552,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_left_to_right_16u(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             *SA
                 .offset(
                     i as isize,
@@ -7682,7 +7609,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7699,7 +7625,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7712,7 +7637,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_left_to_right_16u(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             *SA
                 .offset(
                     (i + 0 as std::ffi::c_int as std::ffi::c_long) as isize,
@@ -7747,7 +7671,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_left_to_right_16u(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             *SA
                 .offset(
                     (i + 1 as std::ffi::c_int as std::ffi::c_long) as isize,
@@ -7782,7 +7705,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_left_to_right_16u(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             *SA
                 .offset(
                     i as isize,
@@ -7844,7 +7766,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7861,7 +7782,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -7874,7 +7794,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_16u(
             ) = p0 ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let ref mut fresh149 = *induction_bucket
                 .offset(*T.offset(p0 as isize) as isize);
             let fresh150 = *fresh149;
@@ -7898,7 +7817,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_16u(
             ) = p1 ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let ref mut fresh151 = *induction_bucket
                 .offset(*T.offset(p1 as isize) as isize);
             let fresh152 = *fresh151;
@@ -7925,7 +7843,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_16u(
             ) = p ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let ref mut fresh153 = *induction_bucket
                 .offset(*T.offset(p as isize) as isize);
             let fresh154 = *fresh153;
@@ -8031,7 +7948,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_32s(
             ) = p0 ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let ref mut fresh155 = *induction_bucket
                 .offset(*T.offset(p0 as isize) as isize);
             let fresh156 = *fresh155;
@@ -8054,7 +7970,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_32s(
             ) = p1 ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let ref mut fresh157 = *induction_bucket
                 .offset(*T.offset(p1 as isize) as isize);
             let fresh158 = *fresh157;
@@ -8082,7 +7997,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_left_to_right_32s(
             ) = p ^ -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let ref mut fresh159 = *induction_bucket
                 .offset(*T.offset(p as isize) as isize);
             let fresh160 = *fresh159;
@@ -8277,7 +8191,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8294,7 +8207,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8312,7 +8224,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_right_to_left_16u(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let mut c0: uint16_t = *T
                 .offset((p0 - (p0 > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1: uint16_t = *T.offset(p0 as isize);
@@ -8342,7 +8253,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_right_to_left_16u(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let mut c0_0: uint16_t = *T
                 .offset((p1 - (p1 > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1_0: uint16_t = *T.offset(p1 as isize);
@@ -8372,7 +8282,6 @@ unsafe extern "C" fn libsais16_final_bwt_scan_right_to_left_16u(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let mut c0_1: uint16_t = *T
                 .offset((p - (p > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1_1: uint16_t = *T.offset(p as isize);
@@ -8428,7 +8337,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8445,7 +8353,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8458,7 +8365,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_right_to_left_16u(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let mut c0: uint16_t = *T
                 .offset((p0 - (p0 > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1: uint16_t = *T.offset(p0 as isize);
@@ -8490,7 +8396,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_right_to_left_16u(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let mut c0_0: uint16_t = *T
                 .offset((p1 - (p1 > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1_0: uint16_t = *T.offset(p1 as isize);
@@ -8526,7 +8431,6 @@ unsafe extern "C" fn libsais16_final_bwt_aux_scan_right_to_left_16u(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let mut c0_1: uint16_t = *T
                 .offset((p - (p > 0 as std::ffi::c_int) as std::ffi::c_int) as isize);
             let mut c1_1: uint16_t = *T.offset(p as isize);
@@ -8586,7 +8490,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8603,7 +8506,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8616,7 +8518,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_16u(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let ref mut fresh175 = *induction_bucket
                 .offset(*T.offset(p0 as isize) as isize);
             *fresh175 -= 1;
@@ -8639,7 +8540,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_16u(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let ref mut fresh176 = *induction_bucket
                 .offset(*T.offset(p1 as isize) as isize);
             *fresh176 -= 1;
@@ -8662,7 +8562,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_16u(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let ref mut fresh177 = *induction_bucket
                 .offset(*T.offset(p as isize) as isize);
             *fresh177 -= 1;
@@ -8711,7 +8610,6 @@ unsafe extern "C" fn libsais16_final_gsa_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts0 = Ts0.offset(-1);
-        Ts0;
         libsais16_prefetchr(
             (if s0 > 0 as std::ffi::c_int { Ts0 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8728,7 +8626,6 @@ unsafe extern "C" fn libsais16_final_gsa_scan_right_to_left_16u(
                 as *const std::ffi::c_void,
         );
         Ts1 = Ts1.offset(-1);
-        Ts1;
         libsais16_prefetchr(
             (if s1 > 0 as std::ffi::c_int { Ts1 } else { 0 as *const uint16_t })
                 as *const std::ffi::c_void,
@@ -8744,7 +8641,6 @@ unsafe extern "C" fn libsais16_final_gsa_scan_right_to_left_16u(
                 > 0 as std::ffi::c_int
         {
             p0 -= 1;
-            p0;
             let ref mut fresh178 = *induction_bucket
                 .offset(*T.offset(p0 as isize) as isize);
             *fresh178 -= 1;
@@ -8770,7 +8666,6 @@ unsafe extern "C" fn libsais16_final_gsa_scan_right_to_left_16u(
                 > 0 as std::ffi::c_int
         {
             p1 -= 1;
-            p1;
             let ref mut fresh179 = *induction_bucket
                 .offset(*T.offset(p1 as isize) as isize);
             *fresh179 -= 1;
@@ -8796,7 +8691,6 @@ unsafe extern "C" fn libsais16_final_gsa_scan_right_to_left_16u(
                 > 0 as std::ffi::c_int
         {
             p -= 1;
-            p;
             let ref mut fresh180 = *induction_bucket
                 .offset(*T.offset(p as isize) as isize);
             *fresh180 -= 1;
@@ -8900,7 +8794,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_32s(
             ) = p0 & 2147483647 as std::ffi::c_int;
         if p0 > 0 as std::ffi::c_int {
             p0 -= 1;
-            p0;
             let ref mut fresh181 = *induction_bucket
                 .offset(*T.offset(p0 as isize) as isize);
             *fresh181 -= 1;
@@ -8922,7 +8815,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_32s(
             ) = p1 & 2147483647 as std::ffi::c_int;
         if p1 > 0 as std::ffi::c_int {
             p1 -= 1;
-            p1;
             let ref mut fresh182 = *induction_bucket
                 .offset(*T.offset(p1 as isize) as isize);
             *fresh182 -= 1;
@@ -8946,7 +8838,6 @@ unsafe extern "C" fn libsais16_final_sorting_scan_right_to_left_32s(
         *SA.offset(i as isize) = p & 2147483647 as std::ffi::c_int;
         if p > 0 as std::ffi::c_int {
             p -= 1;
-            p;
             let ref mut fresh183 = *induction_bucket
                 .offset(*T.offset(p as isize) as isize);
             *fresh183 -= 1;
@@ -9092,7 +8983,6 @@ unsafe extern "C" fn libsais16_clear_lms_suffixes_omp(
             );
         }
         c += 1;
-        c;
     }
 }
 unsafe extern "C" fn libsais16_induce_final_order_16u_omp(
@@ -9576,7 +9466,6 @@ unsafe extern "C" fn libsais16_renumber_unique_and_nonunique_lms_suffixes_32s(
             let ref mut fresh184 = *T.offset(p0 as isize);
             *fresh184 |= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
             f += 1;
-            f;
             s0 = i + 0 as std::ffi::c_int
                 + (-(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int) + f;
         }
@@ -9588,7 +9477,6 @@ unsafe extern "C" fn libsais16_renumber_unique_and_nonunique_lms_suffixes_32s(
             let ref mut fresh185 = *T.offset(p1 as isize);
             *fresh185 |= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
             f += 1;
-            f;
             s1 = i + 1 as std::ffi::c_int
                 + (-(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int) + f;
         }
@@ -9600,7 +9488,6 @@ unsafe extern "C" fn libsais16_renumber_unique_and_nonunique_lms_suffixes_32s(
             let ref mut fresh186 = *T.offset(p2 as isize);
             *fresh186 |= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
             f += 1;
-            f;
             s2 = i + 2 as std::ffi::c_int
                 + (-(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int) + f;
         }
@@ -9612,7 +9499,6 @@ unsafe extern "C" fn libsais16_renumber_unique_and_nonunique_lms_suffixes_32s(
             let ref mut fresh187 = *T.offset(p3 as isize);
             *fresh187 |= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
             f += 1;
-            f;
             s3 = i + 3 as std::ffi::c_int
                 + (-(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int) + f;
         }
@@ -9627,7 +9513,6 @@ unsafe extern "C" fn libsais16_renumber_unique_and_nonunique_lms_suffixes_32s(
             let ref mut fresh188 = *T.offset(p as isize);
             *fresh188 |= -(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int;
             f += 1;
-            f;
             s = i + (-(2147483647 as std::ffi::c_int) - 1 as std::ffi::c_int) + f;
         }
         *SAm.offset((p >> 1 as std::ffi::c_int) as isize) = s - f;
@@ -9875,7 +9760,6 @@ unsafe extern "C" fn libsais16_merge_unique_lms_suffixes_32s(
                 ) = c0 & 2147483647 as std::ffi::c_int;
             *SA.offset(tmp as isize) = i + 0 as std::ffi::c_int;
             i += 1;
-            i;
             let fresh190 = SAnm;
             SAnm = SAnm.offset(1);
             tmp = *fresh190 as fast_sint_t;
@@ -9888,7 +9772,6 @@ unsafe extern "C" fn libsais16_merge_unique_lms_suffixes_32s(
                 ) = c1 & 2147483647 as std::ffi::c_int;
             *SA.offset(tmp as isize) = i + 1 as std::ffi::c_int;
             i += 1;
-            i;
             let fresh191 = SAnm;
             SAnm = SAnm.offset(1);
             tmp = *fresh191 as fast_sint_t;
@@ -9901,7 +9784,6 @@ unsafe extern "C" fn libsais16_merge_unique_lms_suffixes_32s(
                 ) = c2 & 2147483647 as std::ffi::c_int;
             *SA.offset(tmp as isize) = i + 2 as std::ffi::c_int;
             i += 1;
-            i;
             let fresh192 = SAnm;
             SAnm = SAnm.offset(1);
             tmp = *fresh192 as fast_sint_t;
@@ -9914,7 +9796,6 @@ unsafe extern "C" fn libsais16_merge_unique_lms_suffixes_32s(
                 ) = c3 & 2147483647 as std::ffi::c_int;
             *SA.offset(tmp as isize) = i + 3 as std::ffi::c_int;
             i += 1;
-            i;
             let fresh193 = SAnm;
             SAnm = SAnm.offset(1);
             tmp = *fresh193 as fast_sint_t;
@@ -9928,7 +9809,6 @@ unsafe extern "C" fn libsais16_merge_unique_lms_suffixes_32s(
             *T.offset(i as isize) = c & 2147483647 as std::ffi::c_int;
             *SA.offset(tmp as isize) = i;
             i += 1;
-            i;
             let fresh194 = SAnm;
             SAnm = SAnm.offset(1);
             tmp = *fresh194 as fast_sint_t;
@@ -11252,7 +11132,6 @@ pub unsafe extern "C" fn libsais16(
                 let ref mut fresh201 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh201 += 1;
-                *fresh201;
             }
         }
         return 0 as std::ffi::c_int;
@@ -11299,7 +11178,6 @@ pub unsafe extern "C" fn libsais16_gsa(
                 let ref mut fresh202 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh202 += 1;
-                *fresh202;
             }
         }
         return 0 as std::ffi::c_int;
@@ -11365,7 +11243,6 @@ pub unsafe extern "C" fn libsais16_ctx(
                 let ref mut fresh203 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh203 += 1;
-                *fresh203;
             }
         }
         return 0 as std::ffi::c_int;
@@ -11413,7 +11290,6 @@ pub unsafe extern "C" fn libsais16_gsa_ctx(
                 let ref mut fresh204 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh204 += 1;
-                *fresh204;
             }
         }
         return 0 as std::ffi::c_int;
@@ -11462,7 +11338,6 @@ pub unsafe extern "C" fn libsais16_bwt(
                 let ref mut fresh205 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh205 += 1;
-                *fresh205;
             }
         }
         return n;
@@ -11480,7 +11355,6 @@ pub unsafe extern "C" fn libsais16_bwt(
     );
     if index >= 0 as std::ffi::c_int {
         index += 1;
-        index;
         *U
             .offset(
                 0 as std::ffi::c_int as isize,
@@ -11535,7 +11409,6 @@ pub unsafe extern "C" fn libsais16_bwt_aux(
                 let ref mut fresh206 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh206 += 1;
-                *fresh206;
             }
         }
         *I.offset(0 as std::ffi::c_int as isize) = n;
@@ -11605,7 +11478,6 @@ pub unsafe extern "C" fn libsais16_bwt_ctx(
                 let ref mut fresh207 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh207 += 1;
-                *fresh207;
             }
         }
         return n;
@@ -11623,7 +11495,6 @@ pub unsafe extern "C" fn libsais16_bwt_ctx(
     );
     if index >= 0 as std::ffi::c_int {
         index += 1;
-        index;
         *U
             .offset(
                 0 as std::ffi::c_int as isize,
@@ -11680,7 +11551,6 @@ pub unsafe extern "C" fn libsais16_bwt_aux_ctx(
                 let ref mut fresh208 = *freq
                     .offset(*T.offset(0 as std::ffi::c_int as isize) as isize);
                 *fresh208 += 1;
-                *fresh208;
             }
         }
         *I.offset(0 as std::ffi::c_int as isize) = n;
@@ -11782,7 +11652,6 @@ unsafe extern "C" fn libsais16_unbwt_compute_histogram(
     while i < n {
         let ref mut fresh209 = *count.offset(*T.offset(i as isize) as isize);
         *fresh209 = (*fresh209).wrapping_add(1);
-        *fresh209;
         i += 1 as std::ffi::c_int as std::ffi::c_long;
     }
 }
@@ -11812,11 +11681,9 @@ unsafe extern "C" fn libsais16_unbwt_calculate_fastbits(
             {
                 *fastbits.offset(v as isize) = w as uint16_t;
                 v = v.wrapping_add(1);
-                v;
             }
         }
         w = w.wrapping_add(1);
-        w;
     }
 }
 unsafe extern "C" fn libsais16_unbwt_calculate_P(
@@ -11839,7 +11706,6 @@ unsafe extern "C" fn libsais16_unbwt_calculate_P(
         *fresh210 = (*fresh210).wrapping_add(1);
         *P.offset(fresh211 as isize) = i as sa_uint_t;
         i += 1;
-        i;
     }
     let mut i_0: fast_sint_t = index as fast_sint_t;
     let mut j_0: fast_sint_t = omp_block_end;
@@ -11855,7 +11721,6 @@ unsafe extern "C" fn libsais16_unbwt_calculate_P(
         *fresh212 = (*fresh212).wrapping_add(1);
         *P.offset(fresh213 as isize) = i_0 as sa_uint_t;
         i_0 += 1;
-        i_0;
     }
 }
 unsafe extern "C" fn libsais16_unbwt_init_single(
@@ -11871,7 +11736,6 @@ unsafe extern "C" fn libsais16_unbwt_init_single(
     let mut shift: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
     while n >> shift > (1 as std::ffi::c_int) << 17 as std::ffi::c_int {
         shift = shift.wrapping_add(1);
-        shift;
     }
     if !freq.is_null() {
         memcpy(
@@ -11919,7 +11783,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_1(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -11928,7 +11791,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_1(
         p0 = *P.offset(p0 as isize) as fast_uint_t;
         *U0.offset(i as isize) = c0;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
 }
@@ -11954,7 +11816,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_2(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -11966,7 +11827,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_2(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -11975,7 +11835,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_2(
         p1 = *P.offset(p1 as isize) as fast_uint_t;
         *U1.offset(i as isize) = c1;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12005,7 +11864,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_3(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12017,7 +11875,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_3(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12029,7 +11886,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_3(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12038,7 +11894,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_3(
         p2 = *P.offset(p2 as isize) as fast_uint_t;
         *U2.offset(i as isize) = c2;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12072,7 +11927,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_4(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12084,7 +11938,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_4(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12096,7 +11949,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_4(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12108,7 +11960,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_4(
         if *bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3 {
             loop {
                 c3 = c3.wrapping_add(1);
-                c3;
                 if !(*bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3) {
                     break;
                 }
@@ -12117,7 +11968,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_4(
         p3 = *P.offset(p3 as isize) as fast_uint_t;
         *U3.offset(i as isize) = c3;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12155,7 +12005,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12167,7 +12016,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12179,7 +12027,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12191,7 +12038,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         if *bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3 {
             loop {
                 c3 = c3.wrapping_add(1);
-                c3;
                 if !(*bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3) {
                     break;
                 }
@@ -12203,7 +12049,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         if *bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4 {
             loop {
                 c4 = c4.wrapping_add(1);
-                c4;
                 if !(*bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4) {
                     break;
                 }
@@ -12212,7 +12057,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_5(
         p4 = *P.offset(p4 as isize) as fast_uint_t;
         *U4.offset(i as isize) = c4;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12254,7 +12098,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12266,7 +12109,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12278,7 +12120,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12290,7 +12131,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3 {
             loop {
                 c3 = c3.wrapping_add(1);
-                c3;
                 if !(*bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3) {
                     break;
                 }
@@ -12302,7 +12142,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4 {
             loop {
                 c4 = c4.wrapping_add(1);
-                c4;
                 if !(*bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4) {
                     break;
                 }
@@ -12314,7 +12153,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         if *bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5 {
             loop {
                 c5 = c5.wrapping_add(1);
-                c5;
                 if !(*bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5) {
                     break;
                 }
@@ -12323,7 +12161,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_6(
         p5 = *P.offset(p5 as isize) as fast_uint_t;
         *U5.offset(i as isize) = c5;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12369,7 +12206,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12381,7 +12217,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12393,7 +12228,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12405,7 +12239,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3 {
             loop {
                 c3 = c3.wrapping_add(1);
-                c3;
                 if !(*bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3) {
                     break;
                 }
@@ -12417,7 +12250,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4 {
             loop {
                 c4 = c4.wrapping_add(1);
-                c4;
                 if !(*bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4) {
                     break;
                 }
@@ -12429,7 +12261,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5 {
             loop {
                 c5 = c5.wrapping_add(1);
-                c5;
                 if !(*bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5) {
                     break;
                 }
@@ -12441,7 +12272,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         if *bucket2.offset(c6 as isize) as std::ffi::c_ulong <= p6 {
             loop {
                 c6 = c6.wrapping_add(1);
-                c6;
                 if !(*bucket2.offset(c6 as isize) as std::ffi::c_ulong <= p6) {
                     break;
                 }
@@ -12450,7 +12280,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_7(
         p6 = *P.offset(p6 as isize) as fast_uint_t;
         *U6.offset(i as isize) = c6;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12500,7 +12329,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0 {
             loop {
                 c0 = c0.wrapping_add(1);
-                c0;
                 if !(*bucket2.offset(c0 as isize) as std::ffi::c_ulong <= p0) {
                     break;
                 }
@@ -12512,7 +12340,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1 {
             loop {
                 c1 = c1.wrapping_add(1);
-                c1;
                 if !(*bucket2.offset(c1 as isize) as std::ffi::c_ulong <= p1) {
                     break;
                 }
@@ -12524,7 +12351,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2 {
             loop {
                 c2 = c2.wrapping_add(1);
-                c2;
                 if !(*bucket2.offset(c2 as isize) as std::ffi::c_ulong <= p2) {
                     break;
                 }
@@ -12536,7 +12362,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3 {
             loop {
                 c3 = c3.wrapping_add(1);
-                c3;
                 if !(*bucket2.offset(c3 as isize) as std::ffi::c_ulong <= p3) {
                     break;
                 }
@@ -12548,7 +12373,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4 {
             loop {
                 c4 = c4.wrapping_add(1);
-                c4;
                 if !(*bucket2.offset(c4 as isize) as std::ffi::c_ulong <= p4) {
                     break;
                 }
@@ -12560,7 +12384,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5 {
             loop {
                 c5 = c5.wrapping_add(1);
-                c5;
                 if !(*bucket2.offset(c5 as isize) as std::ffi::c_ulong <= p5) {
                     break;
                 }
@@ -12572,7 +12395,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c6 as isize) as std::ffi::c_ulong <= p6 {
             loop {
                 c6 = c6.wrapping_add(1);
-                c6;
                 if !(*bucket2.offset(c6 as isize) as std::ffi::c_ulong <= p6) {
                     break;
                 }
@@ -12584,7 +12406,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         if *bucket2.offset(c7 as isize) as std::ffi::c_ulong <= p7 {
             loop {
                 c7 = c7.wrapping_add(1);
-                c7;
                 if !(*bucket2.offset(c7 as isize) as std::ffi::c_ulong <= p7) {
                     break;
                 }
@@ -12593,7 +12414,6 @@ unsafe extern "C" fn libsais16_unbwt_decode_8(
         p7 = *P.offset(p7 as isize) as fast_uint_t;
         *U7.offset(i as isize) = c7;
         i = i.wrapping_add(1);
-        i;
     }
     *i0 = p0;
     *i1 = p1;
@@ -12618,7 +12438,6 @@ unsafe extern "C" fn libsais16_unbwt_decode(
     let mut shift: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
     while n >> shift > (1 as std::ffi::c_int) << 17 as std::ffi::c_int {
         shift = shift.wrapping_add(1);
-        shift;
     }
     let mut offset: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
     while blocks > 8 as std::ffi::c_int as std::ffi::c_long {
@@ -13021,7 +12840,6 @@ unsafe extern "C" fn libsais16_unbwt_main(
     let mut shift: fast_uint_t = 0 as std::ffi::c_int as fast_uint_t;
     while n >> shift > (1 as std::ffi::c_int) << 17 as std::ffi::c_int {
         shift = shift.wrapping_add(1);
-        shift;
     }
     let mut bucket2: *mut sa_uint_t = libsais16_alloc_aligned(
         ((((1 as std::ffi::c_int) << 8 as std::ffi::c_int) << 8 as std::ffi::c_int)
@@ -13162,7 +12980,6 @@ pub unsafe extern "C" fn libsais16_unbwt_aux(
             return -(1 as std::ffi::c_int);
         }
         t += 1;
-        t;
     }
     return libsais16_unbwt_main(
         T,
@@ -13211,7 +13028,6 @@ pub unsafe extern "C" fn libsais16_unbwt_aux_ctx(
             return -(1 as std::ffi::c_int);
         }
         t += 1;
-        t;
     }
     return libsais16_unbwt_main_ctx(
         ctx as *const LIBSAIS_UNBWT_CONTEXT,
@@ -13379,7 +13195,6 @@ unsafe extern "C" fn libsais16_compute_plcp(
                 == *T.offset((k + l) as isize) as std::ffi::c_int
         {
             l += 1;
-            l;
         }
         *PLCP.offset(i as isize) = l as sa_sint_t;
         l
@@ -13396,7 +13211,6 @@ unsafe extern "C" fn libsais16_compute_plcp(
                 == *T.offset((k_0 + l) as isize) as std::ffi::c_int
         {
             l += 1;
-            l;
         }
         *PLCP.offset(i as isize) = l as sa_sint_t;
         l
@@ -13458,7 +13272,6 @@ unsafe extern "C" fn libsais16_compute_plcp_gsa(
                 == *T.offset((k + l) as isize) as std::ffi::c_int
         {
             l += 1;
-            l;
         }
         *PLCP.offset(i as isize) = l as sa_sint_t;
         l
@@ -13474,7 +13287,6 @@ unsafe extern "C" fn libsais16_compute_plcp_gsa(
                 == *T.offset((k_0 + l) as isize) as std::ffi::c_int
         {
             l += 1;
-            l;
         }
         *PLCP.offset(i as isize) = l as sa_sint_t;
         l
