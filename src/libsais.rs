@@ -256,7 +256,7 @@ unsafe extern "C" fn libsais_free_ctx_main(mut ctx: *mut LIBSAIS_CONTEXT) {
 unsafe extern "C" fn libsais_flip_suffix_markers_omp(
     mut SA: *mut sa_sint_t,
     mut l: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -375,8 +375,8 @@ unsafe extern "C" fn libsais_gather_lms_suffixes_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -786,8 +786,8 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_8u_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
     mut buckets: *mut sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
@@ -1424,7 +1424,7 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_4k_nofs_omp(
     mut n: sa_sint_t,
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -1447,7 +1447,7 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_2k_nofs_omp(
     mut n: sa_sint_t,
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -1470,7 +1470,7 @@ unsafe extern "C" fn libsais_count_and_gather_compacted_lms_suffixes_32s_2k_nofs
     mut n: sa_sint_t,
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -1494,7 +1494,7 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_4k_omp(
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0;
     m = libsais_count_and_gather_lms_suffixes_32s_4k_nofs_omp(
@@ -1514,7 +1514,7 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_2k_omp(
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut m: sa_sint_t = 0;
     m = libsais_count_and_gather_lms_suffixes_32s_2k_nofs_omp(
@@ -1534,7 +1534,7 @@ unsafe extern "C" fn libsais_count_and_gather_compacted_lms_suffixes_32s_2k_omp(
     mut k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     libsais_count_and_gather_compacted_lms_suffixes_32s_2k_nofs_omp(
         T,
@@ -2312,8 +2312,8 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_8u_omp(
     mut m: sa_sint_t,
     mut flags: sa_sint_t,
     mut buckets: *mut sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if flags & 2 as std::ffi::c_int != 0 {
         let ref mut fresh55 = *buckets
@@ -2674,7 +2674,7 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_32s_6k_omp(
     mut m: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int || m < 65536 as std::ffi::c_int {
         libsais_radix_sort_lms_suffixes_32s_6k(
@@ -2694,7 +2694,7 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_32s_2k_omp(
     mut m: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int || m < 65536 as std::ffi::c_int {
         libsais_radix_sort_lms_suffixes_32s_2k(
@@ -3066,7 +3066,7 @@ unsafe extern "C" fn libsais_radix_sort_set_markers_32s_6k_omp(
     mut SA: *mut sa_sint_t,
     mut k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = k as fast_sint_t
@@ -3082,7 +3082,7 @@ unsafe extern "C" fn libsais_radix_sort_set_markers_32s_4k_omp(
     mut SA: *mut sa_sint_t,
     mut k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = k as fast_sint_t
@@ -3487,12 +3487,12 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut left_suffixes_count: sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut induction_bucket: *mut sa_sint_t = &mut *buckets
         .offset(
@@ -4117,7 +4117,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_6k_omp(
     mut left_suffixes_count: sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let ref mut fresh108 = *buckets
         .offset(
@@ -4164,7 +4164,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_4k_omp(
     mut buckets: *mut sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut induction_bucket: *mut sa_sint_t = &mut *buckets
         .offset((2 as std::ffi::c_int as std::ffi::c_long * k as fast_sint_t) as isize)
@@ -4212,7 +4212,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_1k_omp(
     mut n: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let ref mut fresh112 = *buckets
         .offset(*T.offset((n - 1 as std::ffi::c_int) as isize) as isize);
@@ -4237,9 +4237,9 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_1k_omp(
 }
 unsafe extern "C" fn libsais_partial_sorting_shift_markers_8u_omp(
     mut SA: *mut sa_sint_t,
-    mut n: sa_sint_t,
+    mut _n: sa_sint_t,
     mut buckets: *const sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let prefetch_distance: fast_sint_t = 32 as std::ffi::c_int as fast_sint_t;
     let mut temp_bucket: *const sa_sint_t = &*buckets
@@ -4326,7 +4326,7 @@ unsafe extern "C" fn libsais_partial_sorting_shift_markers_32s_6k_omp(
     mut SA: *mut sa_sint_t,
     mut k: sa_sint_t,
     mut buckets: *const sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let prefetch_distance: fast_sint_t = 32 as std::ffi::c_int as fast_sint_t;
     let mut temp_bucket: *const sa_sint_t = &*buckets
@@ -4801,13 +4801,13 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut first_lms_suffix: sa_sint_t,
     mut left_suffixes_count: sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut scan_start: fast_sint_t = left_suffixes_count as fast_sint_t
         + 1 as std::ffi::c_int as std::ffi::c_long;
@@ -4829,13 +4829,13 @@ unsafe extern "C" fn libsais_partial_gsa_scan_right_to_left_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut first_lms_suffix: sa_sint_t,
     mut left_suffixes_count: sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut scan_start: fast_sint_t = left_suffixes_count as fast_sint_t
         + 1 as std::ffi::c_int as std::ffi::c_long;
@@ -5400,7 +5400,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_6k_omp(
     mut left_suffixes_count: sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut scan_start: fast_sint_t = left_suffixes_count as fast_sint_t
         + 1 as std::ffi::c_int as std::ffi::c_long;
@@ -5427,7 +5427,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_4k_omp(
     mut buckets: *mut sa_sint_t,
     mut d: sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     if threads == 1 as std::ffi::c_int || n < 65536 as std::ffi::c_int {
         d = libsais_partial_sorting_scan_right_to_left_32s_4k(
@@ -5448,7 +5448,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_1k_omp(
     mut n: sa_sint_t,
     mut buckets: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int || n < 65536 as std::ffi::c_int {
         libsais_partial_sorting_scan_right_to_left_32s_1k(
@@ -5620,8 +5620,8 @@ unsafe extern "C" fn libsais_partial_sorting_gather_lms_suffixes_32s_1k(
 unsafe extern "C" fn libsais_partial_sorting_gather_lms_suffixes_32s_4k_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -5646,8 +5646,8 @@ unsafe extern "C" fn libsais_partial_sorting_gather_lms_suffixes_32s_4k_omp(
 unsafe extern "C" fn libsais_partial_sorting_gather_lms_suffixes_32s_1k_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -6082,8 +6082,8 @@ unsafe extern "C" fn libsais_gather_marked_lms_suffixes(
 unsafe extern "C" fn libsais_renumber_lms_suffixes_8u_omp(
     mut SA: *mut sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut name: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
@@ -6114,8 +6114,8 @@ unsafe extern "C" fn libsais_gather_marked_lms_suffixes_omp(
     mut n: sa_sint_t,
     mut m: sa_sint_t,
     mut fs: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -6426,8 +6426,8 @@ unsafe extern "C" fn libsais_clamp_lms_suffixes_length_32s(
 unsafe extern "C" fn libsais_renumber_distinct_lms_suffixes_32s_4k_omp(
     mut SA: *mut sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut name: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
@@ -6457,7 +6457,7 @@ unsafe extern "C" fn libsais_mark_distinct_lms_suffixes_32s_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = n as fast_sint_t >> 1 as std::ffi::c_int;
@@ -6467,7 +6467,7 @@ unsafe extern "C" fn libsais_clamp_lms_suffixes_length_32s_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = n as fast_sint_t >> 1 as std::ffi::c_int;
@@ -6854,7 +6854,7 @@ unsafe extern "C" fn libsais_reconstruct_lms_suffixes_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = m as fast_sint_t;
@@ -7970,10 +7970,10 @@ unsafe extern "C" fn libsais_final_bwt_scan_left_to_right_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: fast_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let ref mut fresh161 = *induction_bucket
         .offset(*T.offset((n as sa_sint_t - 1 as std::ffi::c_int) as isize) as isize);
@@ -8004,12 +8004,12 @@ unsafe extern "C" fn libsais_final_bwt_aux_scan_left_to_right_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: fast_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut rm: sa_sint_t,
     mut I: *mut sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let ref mut fresh163 = *induction_bucket
         .offset(*T.offset((n as sa_sint_t - 1 as std::ffi::c_int) as isize) as isize);
@@ -8052,10 +8052,10 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: fast_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let ref mut fresh165 = *induction_bucket
         .offset(*T.offset((n as sa_sint_t - 1 as std::ffi::c_int) as isize) as isize);
@@ -8088,7 +8088,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_32s_omp(
     mut n: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let ref mut fresh167 = *induction_bucket
         .offset(*T.offset((n - 1 as std::ffi::c_int) as isize) as isize);
@@ -8810,10 +8810,10 @@ unsafe extern "C" fn libsais_final_bwt_scan_right_to_left_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut index: sa_sint_t = -(1 as std::ffi::c_int);
     if threads == 1 as std::ffi::c_int || n < 65536 as std::ffi::c_int {
@@ -8831,12 +8831,12 @@ unsafe extern "C" fn libsais_final_bwt_aux_scan_right_to_left_8u_omp(
     mut T: *const uint8_t,
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut rm: sa_sint_t,
     mut I: *mut sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int || n < 65536 as std::ffi::c_int {
         libsais_final_bwt_aux_scan_right_to_left_8u(
@@ -8855,10 +8855,10 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_8u_omp(
     mut SA: *mut sa_sint_t,
     mut omp_block_start: fast_sint_t,
     mut omp_block_size: fast_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int
         || omp_block_size < 65536 as std::ffi::c_int as std::ffi::c_long
@@ -8877,10 +8877,10 @@ unsafe extern "C" fn libsais_final_gsa_scan_right_to_left_8u_omp(
     mut SA: *mut sa_sint_t,
     mut omp_block_start: fast_sint_t,
     mut omp_block_size: fast_sint_t,
-    mut k: sa_sint_t,
+    mut _k: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int
         || omp_block_size < 65536 as std::ffi::c_int as std::ffi::c_long
@@ -8900,7 +8900,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_32s_omp(
     mut n: sa_sint_t,
     mut induction_bucket: *mut sa_sint_t,
     mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     if threads == 1 as std::ffi::c_int || n < 65536 as std::ffi::c_int {
         libsais_final_sorting_scan_right_to_left_32s(
@@ -8914,11 +8914,11 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_32s_omp(
 }
 unsafe extern "C" fn libsais_clear_lms_suffixes_omp(
     mut SA: *mut sa_sint_t,
-    mut n: sa_sint_t,
+    mut _n: sa_sint_t,
     mut k: sa_sint_t,
     mut bucket_start: *mut sa_sint_t,
     mut bucket_end: *mut sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut c: fast_sint_t = 0;
     c = 0 as std::ffi::c_int as fast_sint_t;
@@ -9561,8 +9561,8 @@ unsafe extern "C" fn libsais_renumber_unique_and_nonunique_lms_suffixes_32s_omp(
     mut T: *mut sa_sint_t,
     mut SA: *mut sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) -> sa_sint_t {
     let mut f: sa_sint_t = 0 as std::ffi::c_int;
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
@@ -9595,8 +9595,8 @@ unsafe extern "C" fn libsais_compact_unique_and_nonunique_lms_suffixes_32s_omp(
     mut m: sa_sint_t,
     mut fs: sa_sint_t,
     mut f: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -9827,8 +9827,8 @@ unsafe extern "C" fn libsais_merge_unique_lms_suffixes_32s_omp(
     mut SA: *mut sa_sint_t,
     mut n: sa_sint_t,
     mut m: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -9859,8 +9859,8 @@ unsafe extern "C" fn libsais_merge_nonunique_lms_suffixes_32s_omp(
     mut n: sa_sint_t,
     mut m: sa_sint_t,
     mut f: sa_sint_t,
-    mut threads: sa_sint_t,
-    mut thread_state: *mut LIBSAIS_THREAD_STATE,
+    mut _threads: sa_sint_t,
+    mut _thread_state: *mut LIBSAIS_THREAD_STATE,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -10984,7 +10984,7 @@ unsafe extern "C" fn libsais_bwt_copy_8u_omp(
     mut U: *mut uint8_t,
     mut A: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_block_start: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_block_size: fast_sint_t = n as fast_sint_t;
@@ -13316,7 +13316,7 @@ unsafe extern "C" fn libsais_unbwt_decode_omp(
     mut I: *const sa_uint_t,
     mut bucket2: *mut sa_uint_t,
     mut fastbits: *mut uint16_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut lastc: fast_uint_t = *T.offset(0 as std::ffi::c_int as isize) as fast_uint_t;
     let mut blocks: fast_sint_t = 1 as std::ffi::c_int as std::ffi::c_long
@@ -13369,7 +13369,7 @@ unsafe extern "C" fn libsais_unbwt_core(
     mut I: *const sa_uint_t,
     mut bucket2: *mut sa_uint_t,
     mut fastbits: *mut uint16_t,
-    mut buckets: *mut sa_uint_t,
+    mut _buckets: *mut sa_uint_t,
     mut threads: sa_sint_t,
 ) -> sa_sint_t {
     libsais_unbwt_init_single(T, P, n, freq, I, bucket2, fastbits);
@@ -13694,7 +13694,7 @@ unsafe extern "C" fn libsais_compute_phi_omp(
     mut SA: *const sa_sint_t,
     mut PLCP: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -13773,7 +13773,7 @@ unsafe extern "C" fn libsais_compute_plcp_omp(
     mut T: *const uint8_t,
     mut PLCP: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -13849,7 +13849,7 @@ unsafe extern "C" fn libsais_compute_plcp_gsa_omp(
     mut T: *const uint8_t,
     mut PLCP: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -13922,7 +13922,7 @@ unsafe extern "C" fn libsais_compute_plcp_int_omp(
     mut T: *const int32_t,
     mut PLCP: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
@@ -14048,7 +14048,7 @@ unsafe extern "C" fn libsais_compute_lcp_omp(
     mut SA: *const sa_sint_t,
     mut LCP: *mut sa_sint_t,
     mut n: sa_sint_t,
-    mut threads: sa_sint_t,
+    mut _threads: sa_sint_t,
 ) {
     let mut omp_thread_num: fast_sint_t = 0 as std::ffi::c_int as fast_sint_t;
     let mut omp_num_threads: fast_sint_t = 1 as std::ffi::c_int as fast_sint_t;
