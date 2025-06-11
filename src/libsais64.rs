@@ -96,8 +96,6 @@ extern "C" {
         _: std::ffi::c_int,
         _: std::ffi::c_ulong,
     ) -> *mut std::ffi::c_void;
-    fn libsais64_prefetchr(_: *const std::ffi::c_void);
-    fn libsais64_prefetchw(_: *const std::ffi::c_void);
 }
 pub type __uint8_t = std::ffi::c_uchar;
 pub type __uint16_t = std::ffi::c_ushort;
@@ -139,6 +137,8 @@ pub type size_t = std::ffi::c_ulong;
 pub type ptrdiff_t = std::ffi::c_long;
 pub type sa_uint_t = uint64_t;
 pub type fast_uint_t = uint64_t;
+unsafe fn libsais64_prefetchr(_: *const std::ffi::c_void) {}
+unsafe fn libsais64_prefetchw(_: *const std::ffi::c_void) {}
 unsafe extern "C" fn libsais64_align_up(
     mut address: *const std::ffi::c_void,
     mut alignment: size_t,

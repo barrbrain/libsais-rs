@@ -48,8 +48,6 @@ extern "C" {
         _: std::ffi::c_int,
         _: std::ffi::c_ulong,
     ) -> *mut std::ffi::c_void;
-    fn libsais_prefetchr(_: *const std::ffi::c_void);
-    fn libsais_prefetchw(_: *const std::ffi::c_void);
 }
 pub type __uint8_t = std::ffi::c_uchar;
 pub type __uint16_t = std::ffi::c_ushort;
@@ -102,6 +100,8 @@ pub struct LIBSAIS_UNBWT_CONTEXT {
     pub buckets: *mut sa_uint_t,
     pub threads: fast_sint_t,
 }
+unsafe fn libsais_prefetchr(_: *const std::ffi::c_void) {}
+unsafe fn libsais_prefetchw(_: *const std::ffi::c_void) {}
 unsafe extern "C" fn libsais_align_up(
     mut address: *const std::ffi::c_void,
     mut alignment: size_t,
