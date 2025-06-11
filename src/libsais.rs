@@ -98,10 +98,10 @@ unsafe fn libsais_prefetchr<T>(p: *const T) {
         core::arch::x86_64::_MM_HINT_T0,
     );
 }
-unsafe fn libsais_prefetchw(p: *const c_void) {
+unsafe fn libsais_prefetchw<T>(p: *const T) {
     #[cfg(target_arch = "x86_64")]
     core::arch::x86_64::_mm_prefetch(
-        core::mem::transmute::<*const c_void, *mut i8>(p),
+        core::mem::transmute::<*const T, *mut i8>(p),
         core::arch::x86_64::_MM_HINT_ET0,
     );
 }
@@ -448,22 +448,22 @@ unsafe extern "C" fn libsais_count_lms_suffixes_32s_2k(
             ((*T.offset((i as c_long - prefetch_distance - 0 as c_int as c_long) as isize)
                 << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             ((*T.offset((i as c_long - prefetch_distance - 1 as c_int as c_long) as isize)
                 << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             ((*T.offset((i as c_long - prefetch_distance - 2 as c_int as c_long) as isize)
                 << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             ((*T.offset((i as c_long - prefetch_distance - 3 as c_int as c_long) as isize)
                 << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         c1 = *T.offset((i - 0 as c_int) as isize) as fast_sint_t;
         f1 = (c1 > c0 - f0 as fast_sint_t) as c_int as fast_uint_t;
         let fresh3 = &mut (*buckets
@@ -673,19 +673,19 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_4k(
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 0 as c_int as c_long) as isize) << 2 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 1 as c_int as c_long) as isize) << 2 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 2 as c_int as c_long) as isize) << 2 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 3 as c_int as c_long) as isize) << 2 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             c1 = *T.offset((i - 0 as c_int as c_long) as isize) as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as c_int as fast_uint_t;
             *SA.offset(m as isize) = (i + 1 as c_int as c_long) as sa_sint_t;
@@ -793,19 +793,19 @@ unsafe extern "C" fn libsais_count_and_gather_lms_suffixes_32s_2k(
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 0 as c_int as c_long) as isize) << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 1 as c_int as c_long) as isize) << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 2 as c_int as c_long) as isize) << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 ((*T.offset((i - prefetch_distance - 3 as c_int as c_long) as isize) << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             c1 = *T.offset((i - 0 as c_int as c_long) as isize) as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as c_int as fast_uint_t;
             *SA.offset(m as isize) = (i + 1 as c_int as c_long) as sa_sint_t;
@@ -903,25 +903,25 @@ unsafe extern "C" fn libsais_count_and_gather_compacted_lms_suffixes_32s_2k(
                     & 2147483647 as c_int)
                     << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 (((*T.offset((i - prefetch_distance - 1 as c_int as c_long) as isize)
                     & 2147483647 as c_int)
                     << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 (((*T.offset((i - prefetch_distance - 2 as c_int as c_long) as isize)
                     & 2147483647 as c_int)
                     << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             libsais_prefetchw(&mut *buckets.offset(
                 (((*T.offset((i - prefetch_distance - 3 as c_int as c_long) as isize)
                     & 2147483647 as c_int)
                     << 1 as c_int)
                     + 0 as c_int) as isize,
-            ) as *mut sa_sint_t as *const c_void);
+            ));
             c1 = *T.offset((i - 0 as c_int as c_long) as isize) as fast_sint_t;
             f1 = (c1 > c0 - f0 as fast_sint_t) as c_int as fast_uint_t;
             *SA.offset(m as isize) = (i + 1 as c_int as c_long) as sa_sint_t;
@@ -1615,22 +1615,22 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_32s_6k(
         libsais_prefetchw(
             &mut *induction_bucket.offset(*T.offset(
                 *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize) as isize,
-            ) as isize) as *mut sa_sint_t as *const c_void,
+            ) as isize),
         );
         libsais_prefetchw(
             &mut *induction_bucket.offset(*T.offset(
                 *SA.offset((i - prefetch_distance - 1 as c_int as c_long) as isize) as isize,
-            ) as isize) as *mut sa_sint_t as *const c_void,
+            ) as isize),
         );
         libsais_prefetchw(
             &mut *induction_bucket.offset(*T.offset(
                 *SA.offset((i - prefetch_distance - 2 as c_int as c_long) as isize) as isize,
-            ) as isize) as *mut sa_sint_t as *const c_void,
+            ) as isize),
         );
         libsais_prefetchw(
             &mut *induction_bucket.offset(*T.offset(
                 *SA.offset((i - prefetch_distance - 3 as c_int as c_long) as isize) as isize,
-            ) as isize) as *mut sa_sint_t as *const c_void,
+            ) as isize),
         );
         let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
         let fresh56 = &mut (*induction_bucket.offset(*T.offset(p0 as isize) as isize));
@@ -1698,25 +1698,25 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_32s_2k(
                 *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize) as isize,
             ) << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *induction_bucket.offset(
             ((*T.offset(
                 *SA.offset((i - prefetch_distance - 1 as c_int as c_long) as isize) as isize,
             ) << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *induction_bucket.offset(
             ((*T.offset(
                 *SA.offset((i - prefetch_distance - 2 as c_int as c_long) as isize) as isize,
             ) << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *induction_bucket.offset(
             ((*T.offset(
                 *SA.offset((i - prefetch_distance - 3 as c_int as c_long) as isize) as isize,
             ) << 1 as c_int)
                 + 0 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
         let fresh61 = &mut (*induction_bucket
             .offset(((*T.offset(p0 as isize) << 1 as c_int) + 0 as c_int) as isize));
@@ -1807,16 +1807,16 @@ unsafe extern "C" fn libsais_radix_sort_lms_suffixes_32s_1k(
         );
         libsais_prefetchw(&mut *buckets.offset(
             *T.offset((i as c_long - prefetch_distance - 0 as c_int as c_long) as isize) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             *T.offset((i as c_long - prefetch_distance - 1 as c_int as c_long) as isize) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             *T.offset((i as c_long - prefetch_distance - 2 as c_int as c_long) as isize) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *buckets.offset(
             *T.offset((i as c_long - prefetch_distance - 3 as c_int as c_long) as isize) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         c1 = *T.offset((i - 0 as c_int) as isize) as fast_sint_t;
         f1 = (c1 > c0 - f0 as fast_sint_t) as c_int as fast_uint_t;
         if f1 & !f0 != 0 {
@@ -1892,19 +1892,19 @@ unsafe extern "C" fn libsais_radix_sort_set_markers_32s_6k(
         libsais_prefetchw(&mut *SA.offset(
             *induction_bucket.offset((i + prefetch_distance + 0 as c_int as c_long) as isize)
                 as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SA.offset(
             *induction_bucket.offset((i + prefetch_distance + 1 as c_int as c_long) as isize)
                 as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SA.offset(
             *induction_bucket.offset((i + prefetch_distance + 2 as c_int as c_long) as isize)
                 as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SA.offset(
             *induction_bucket.offset((i + prefetch_distance + 3 as c_int as c_long) as isize)
                 as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         let fresh71 = &mut (*SA
             .offset(*induction_bucket.offset((i + 0 as c_int as c_long) as isize) as isize));
         *fresh71 |= -(2147483647 as c_int) - 1 as c_int;
@@ -1945,19 +1945,19 @@ unsafe extern "C" fn libsais_radix_sort_set_markers_32s_4k(
         libsais_prefetchw(&mut *SA.offset(*induction_bucket.offset(
             (((i + prefetch_distance + 0 as c_int as c_long) << 1 as c_int) + 0 as c_int as c_long)
                 as isize,
-        ) as isize) as *mut sa_sint_t as *const c_void);
+        ) as isize));
         libsais_prefetchw(&mut *SA.offset(*induction_bucket.offset(
             (((i + prefetch_distance + 1 as c_int as c_long) << 1 as c_int) + 0 as c_int as c_long)
                 as isize,
-        ) as isize) as *mut sa_sint_t as *const c_void);
+        ) as isize));
         libsais_prefetchw(&mut *SA.offset(*induction_bucket.offset(
             (((i + prefetch_distance + 2 as c_int as c_long) << 1 as c_int) + 0 as c_int as c_long)
                 as isize,
-        ) as isize) as *mut sa_sint_t as *const c_void);
+        ) as isize));
         libsais_prefetchw(&mut *SA.offset(*induction_bucket.offset(
             (((i + prefetch_distance + 3 as c_int as c_long) << 1 as c_int) + 0 as c_int as c_long)
                 as isize,
-        ) as isize) as *mut sa_sint_t as *const c_void);
+        ) as isize));
         let fresh76 =
             &mut (*SA.offset(*induction_bucket.offset(
                 (((i + 0 as c_int as c_long) << 1 as c_int) + 0 as c_int as c_long) as isize,
@@ -2311,12 +2311,12 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_6k(
             & 2147483647 as c_int;
         let mut v0: sa_sint_t =
             (*T.offset((p0 - (p0 > 0 as c_int) as c_int) as isize) << 2 as c_int) + 0 as c_int;
-        libsais_prefetchw(&mut *buckets.offset(v0 as isize) as *mut sa_sint_t as *const c_void);
+        libsais_prefetchw(&mut *buckets.offset(v0 as isize));
         let mut p1: sa_sint_t = *SA.offset((i + prefetch_distance + 1 as c_int as c_long) as isize)
             & 2147483647 as c_int;
         let mut v1: sa_sint_t =
             (*T.offset((p1 - (p1 > 0 as c_int) as c_int) as isize) << 2 as c_int) + 0 as c_int;
-        libsais_prefetchw(&mut *buckets.offset(v1 as isize) as *mut sa_sint_t as *const c_void);
+        libsais_prefetchw(&mut *buckets.offset(v1 as isize));
         let mut p2: sa_sint_t = *SA.offset((i + 0 as c_int as c_long) as isize);
         d += (p2 < 0 as c_int) as c_int;
         p2 &= 2147483647 as c_int;
@@ -2385,10 +2385,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_4k(
         - 2 as c_int as c_long * prefetch_distance
         - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i + 2 as c_int as c_long * prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T.offset(
@@ -2418,12 +2415,9 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_4k(
                 ((s2 & !((1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int))) - 1 as c_int)
                     as isize,
             ) as fast_sint_t;
+            libsais_prefetchw(&mut *induction_bucket.offset(Ts2 as isize));
             libsais_prefetchw(
-                &mut *induction_bucket.offset(Ts2 as isize) as *mut sa_sint_t as *const c_void,
-            );
-            libsais_prefetchw(
-                &mut *distinct_names.offset(((Ts2 << 1 as c_int) + 0 as c_int as c_long) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *distinct_names.offset(((Ts2 << 1 as c_int) + 0 as c_int as c_long) as isize),
             );
         }
         let mut s3: sa_sint_t = *SA
@@ -2433,12 +2427,9 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_4k(
                 ((s3 & !((1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int))) - 1 as c_int)
                     as isize,
             ) as fast_sint_t;
+            libsais_prefetchw(&mut *induction_bucket.offset(Ts3 as isize));
             libsais_prefetchw(
-                &mut *induction_bucket.offset(Ts3 as isize) as *mut sa_sint_t as *const c_void,
-            );
-            libsais_prefetchw(
-                &mut *distinct_names.offset(((Ts3 << 1 as c_int) + 0 as c_int as c_long) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *distinct_names.offset(((Ts3 << 1 as c_int) + 0 as c_int as c_long) as isize),
             );
         }
         let mut p0: sa_sint_t = *SA.offset((i + 0 as c_int as c_long) as isize);
@@ -2527,10 +2518,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_1k(
         - 2 as c_int as c_long * prefetch_distance
         - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i + 2 as c_int as c_long * prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T
@@ -2547,8 +2535,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_1k(
             .offset((i + 1 as c_int as c_long * prefetch_distance + 0 as c_int as c_long) as isize);
         if s2 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s2 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -2558,8 +2545,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_left_to_right_32s_1k(
             .offset((i + 1 as c_int as c_long * prefetch_distance + 1 as c_int as c_long) as isize);
         if s3 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s3 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -2734,10 +2720,7 @@ unsafe extern "C" fn libsais_partial_sorting_shift_markers_8u_omp(
             as fast_sint_t
             + 3 as c_int as c_long;
         while i >= j {
-            libsais_prefetchw(
-                &mut *SA.offset((i - prefetch_distance) as isize) as *mut sa_sint_t
-                    as *const c_void,
-            );
+            libsais_prefetchw(&mut *SA.offset((i - prefetch_distance) as isize));
             let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
             let mut q0: sa_sint_t = p0 & (-(2147483647 as c_int) - 1 as c_int) ^ s;
             s ^= q0;
@@ -2789,10 +2772,7 @@ unsafe extern "C" fn libsais_partial_sorting_shift_markers_32s_6k_omp(
             as fast_sint_t
             + 3 as c_int as c_long;
         while i >= j {
-            libsais_prefetchw(
-                &mut *SA.offset((i - prefetch_distance) as isize) as *mut sa_sint_t
-                    as *const c_void,
-            );
+            libsais_prefetchw(&mut *SA.offset((i - prefetch_distance) as isize));
             let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
             let mut q0: sa_sint_t = p0 & (-(2147483647 as c_int) - 1 as c_int) ^ s;
             s ^= q0;
@@ -2831,9 +2811,7 @@ unsafe extern "C" fn libsais_partial_sorting_shift_markers_32s_4k(
     let mut s: sa_sint_t = (1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int);
     i = n as fast_sint_t - 1 as c_int as c_long;
     while i >= 3 as c_int as c_long {
-        libsais_prefetchw(
-            &mut *SA.offset((i - prefetch_distance) as isize) as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - prefetch_distance) as isize));
         let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
         let mut q0: sa_sint_t = (p0 & (1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int) ^ s)
             & ((p0 > 0 as c_int) as c_int) << (32 as c_int - 1 as c_int - 1 as c_int);
@@ -3180,12 +3158,12 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_6k(
             & 2147483647 as c_int;
         let mut v0: sa_sint_t =
             (*T.offset((p0 - (p0 > 0 as c_int) as c_int) as isize) << 2 as c_int) + 0 as c_int;
-        libsais_prefetchw(&mut *buckets.offset(v0 as isize) as *mut sa_sint_t as *const c_void);
+        libsais_prefetchw(&mut *buckets.offset(v0 as isize));
         let mut p1: sa_sint_t = *SA.offset((i - prefetch_distance - 1 as c_int as c_long) as isize)
             & 2147483647 as c_int;
         let mut v1: sa_sint_t =
             (*T.offset((p1 - (p1 > 0 as c_int) as c_int) as isize) << 2 as c_int) + 0 as c_int;
-        libsais_prefetchw(&mut *buckets.offset(v1 as isize) as *mut sa_sint_t as *const c_void);
+        libsais_prefetchw(&mut *buckets.offset(v1 as isize));
         let mut p2: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
         d += (p2 < 0 as c_int) as c_int;
         p2 &= 2147483647 as c_int;
@@ -3249,10 +3227,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_4k(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + 2 as c_int as c_long * prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i - 2 as c_int as c_long * prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T.offset(
@@ -3282,12 +3257,9 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_4k(
                 ((s2 & !((1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int))) - 1 as c_int)
                     as isize,
             ) as fast_sint_t;
+            libsais_prefetchw(&mut *induction_bucket.offset(Ts2 as isize));
             libsais_prefetchw(
-                &mut *induction_bucket.offset(Ts2 as isize) as *mut sa_sint_t as *const c_void,
-            );
-            libsais_prefetchw(
-                &mut *distinct_names.offset(((Ts2 << 1 as c_int) + 0 as c_int as c_long) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *distinct_names.offset(((Ts2 << 1 as c_int) + 0 as c_int as c_long) as isize),
             );
         }
         let mut s3: sa_sint_t = *SA
@@ -3297,12 +3269,9 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_4k(
                 ((s3 & !((1 as c_int) << (32 as c_int - 1 as c_int - 1 as c_int))) - 1 as c_int)
                     as isize,
             ) as fast_sint_t;
+            libsais_prefetchw(&mut *induction_bucket.offset(Ts3 as isize));
             libsais_prefetchw(
-                &mut *induction_bucket.offset(Ts3 as isize) as *mut sa_sint_t as *const c_void,
-            );
-            libsais_prefetchw(
-                &mut *distinct_names.offset(((Ts3 << 1 as c_int) + 0 as c_int as c_long) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *distinct_names.offset(((Ts3 << 1 as c_int) + 0 as c_int as c_long) as isize),
             );
         }
         let mut p0: sa_sint_t = *SA.offset((i - 0 as c_int as c_long) as isize);
@@ -3383,10 +3352,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_1k(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + 2 as c_int as c_long * prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i - 2 as c_int as c_long * prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T
@@ -3403,8 +3369,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_1k(
             .offset((i - 1 as c_int as c_long * prefetch_distance - 0 as c_int as c_long) as isize);
         if s2 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s2 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -3414,8 +3379,7 @@ unsafe extern "C" fn libsais_partial_sorting_scan_right_to_left_32s_1k(
             .offset((i - 1 as c_int as c_long * prefetch_distance - 1 as c_int as c_long) as isize);
         if s3 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s3 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -3884,22 +3848,22 @@ unsafe extern "C" fn libsais_renumber_lms_suffixes_8u(
             ((*SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 1 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 2 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 3 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         let mut p0: sa_sint_t = *SA.offset((i + 0 as c_int as c_long) as isize);
         *SAm.offset(((p0 & 2147483647 as c_int) >> 1 as c_int) as isize) =
             name | (-(2147483647 as c_int) - 1 as c_int);
@@ -4064,30 +4028,27 @@ unsafe extern "C" fn libsais_renumber_distinct_lms_suffixes_32s_4k(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - prefetch_distance - 3 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 1 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 2 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             ((*SA.offset((i + prefetch_distance + 3 as c_int as c_long) as isize)
                 & 2147483647 as c_int)
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         p0 = *SA.offset((i + 0 as c_int as c_long) as isize);
         let fresh130 = &mut (*SA.offset((i + 0 as c_int as c_long) as isize));
         *fresh130 = p0 & 2147483647 as c_int;
@@ -4143,9 +4104,7 @@ unsafe extern "C" fn libsais_mark_distinct_lms_suffixes_32s(
     i = m as fast_sint_t + omp_block_start;
     j = m as fast_sint_t + omp_block_start + omp_block_size - 3 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + prefetch_distance) as isize) as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + prefetch_distance) as isize));
         p0 = *SA.offset((i + 0 as c_int as c_long) as isize);
         *SA.offset((i + 0 as c_int as c_long) as isize) = p0 & (p3 | 2147483647 as c_int);
         p0 = if p0 == 0 as c_int { p3 } else { p0 };
@@ -4182,9 +4141,7 @@ unsafe extern "C" fn libsais_clamp_lms_suffixes_length_32s(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - 3 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SAm.offset((i + prefetch_distance) as isize) as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SAm.offset((i + prefetch_distance) as isize));
         *SAm.offset((i + 0 as c_int as c_long) as isize) =
             (if *SAm.offset((i + 0 as c_int as c_long) as isize) < 0 as c_int {
                 *SAm.offset((i + 0 as c_int as c_long) as isize)
@@ -4316,19 +4273,19 @@ unsafe extern "C" fn libsais_renumber_and_mark_distinct_lms_suffixes_32s_1k_omp(
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i + prefetch_distance + 1 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i + prefetch_distance + 2 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i + prefetch_distance + 3 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         *SAm.offset(
             (*SA.offset((i + 0 as c_int as c_long) as isize) as sa_uint_t >> 1 as c_int) as isize,
         ) = *SA.offset((i + 1 as c_int as c_long) as isize)
@@ -4381,7 +4338,7 @@ unsafe extern "C" fn libsais_renumber_and_mark_distinct_lms_suffixes_32s_1k_omp(
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i_0 + prefetch_distance + 0 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchr(&mut *T.offset(
             *SA.offset((i_0 + prefetch_distance + 0 as c_int as c_long) as isize) as sa_uint_t
                 as isize,
@@ -4389,7 +4346,7 @@ unsafe extern "C" fn libsais_renumber_and_mark_distinct_lms_suffixes_32s_1k_omp(
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset((i_0 + prefetch_distance + 1 as c_int as c_long) as isize) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchr(&mut *T.offset(
             *SA.offset((i_0 + prefetch_distance + 1 as c_int as c_long) as isize) as sa_uint_t
                 as isize,
@@ -4469,10 +4426,7 @@ unsafe extern "C" fn libsais_reconstruct_lms_suffixes(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - prefetch_distance - 3 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
         libsais_prefetchr(
             &*SAnm.offset(
                 *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize) as isize,
@@ -4924,10 +4878,7 @@ unsafe extern "C" fn libsais_final_bwt_scan_left_to_right_8u(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - prefetch_distance - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5002,10 +4953,7 @@ unsafe extern "C" fn libsais_final_bwt_aux_scan_left_to_right_8u(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - prefetch_distance - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5090,10 +5038,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_8u(
     i = omp_block_start;
     j = omp_block_start + omp_block_size - prefetch_distance - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5164,10 +5109,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_32s(
         - 2 as c_int as c_long * prefetch_distance
         - 1 as c_int as c_long;
     while i < j {
-        libsais_prefetchw(
-            &mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i + 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i + 2 as c_int as c_long * prefetch_distance + 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T
@@ -5184,8 +5126,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_32s(
             .offset((i + 1 as c_int as c_long * prefetch_distance + 0 as c_int as c_long) as isize);
         if s2 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s2 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -5195,8 +5136,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_left_to_right_32s(
             .offset((i + 1 as c_int as c_long * prefetch_distance + 1 as c_int as c_long) as isize);
         if s3 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s3 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -5378,10 +5318,7 @@ unsafe extern "C" fn libsais_final_bwt_scan_right_to_left_8u(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5474,10 +5411,7 @@ unsafe extern "C" fn libsais_final_bwt_aux_scan_right_to_left_8u(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5564,10 +5498,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_8u(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5631,10 +5562,7 @@ unsafe extern "C" fn libsais_final_gsa_scan_right_to_left_8u(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 2 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA.offset((i - prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const uint8_t =
             &*T.offset((if s0 > 0 as c_int { s0 } else { 2 as c_int }) as isize) as *const uint8_t;
@@ -5698,10 +5626,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_32s(
     i = omp_block_start + omp_block_size - 1 as c_int as c_long;
     j = omp_block_start + 2 as c_int as c_long * prefetch_distance + 1 as c_int as c_long;
     while i >= j {
-        libsais_prefetchw(
-            &mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *SA.offset((i - 3 as c_int as c_long * prefetch_distance) as isize));
         let mut s0: sa_sint_t = *SA
             .offset((i - 2 as c_int as c_long * prefetch_distance - 0 as c_int as c_long) as isize);
         let mut Ts0: *const sa_sint_t = &*T
@@ -5718,8 +5643,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_32s(
             .offset((i - 1 as c_int as c_long * prefetch_distance - 0 as c_int as c_long) as isize);
         if s2 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s2 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s2 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -5729,8 +5653,7 @@ unsafe extern "C" fn libsais_final_sorting_scan_right_to_left_32s(
             .offset((i - 1 as c_int as c_long * prefetch_distance - 1 as c_int as c_long) as isize);
         if s3 > 0 as c_int {
             libsais_prefetchw(
-                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize)
-                    as *mut sa_sint_t as *const c_void,
+                &mut *induction_bucket.offset(*T.offset((s3 - 1 as c_int) as isize) as isize),
             );
             libsais_prefetchr(
                 (&*T.offset(s3 as isize) as *const sa_sint_t).offset(-(2 as c_int as isize)),
@@ -6155,71 +6078,71 @@ unsafe extern "C" fn libsais_renumber_unique_and_nonunique_lms_suffixes_32s(
                     as isize,
             ) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset(
                 (i as c_long + 2 as c_int as c_long * prefetch_distance + 1 as c_int as c_long)
                     as isize,
             ) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset(
                 (i as c_long + 2 as c_int as c_long * prefetch_distance + 2 as c_int as c_long)
                     as isize,
             ) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         libsais_prefetchw(&mut *SAm.offset(
             (*SA.offset(
                 (i as c_long + 2 as c_int as c_long * prefetch_distance + 3 as c_int as c_long)
                     as isize,
             ) as sa_uint_t
                 >> 1 as c_int) as isize,
-        ) as *mut sa_sint_t as *const c_void);
+        ));
         let mut q0: sa_uint_t = *SA
             .offset((i as c_long + prefetch_distance + 0 as c_int as c_long) as isize)
             as sa_uint_t;
         let mut Tq0: *mut sa_sint_t = &mut *T.offset(q0 as isize) as *mut sa_sint_t;
         libsais_prefetchw(
-            (if *SAm.offset((q0 >> 1 as c_int) as isize) < 0 as c_int {
+            if *SAm.offset((q0 >> 1 as c_int) as isize) < 0 as c_int {
                 Tq0
             } else {
                 &mut *SAm.offset((q0 >> 1 as c_int) as isize) as *mut sa_sint_t
-            }) as *const c_void,
+            },
         );
         let mut q1: sa_uint_t = *SA
             .offset((i as c_long + prefetch_distance + 1 as c_int as c_long) as isize)
             as sa_uint_t;
         let mut Tq1: *mut sa_sint_t = &mut *T.offset(q1 as isize) as *mut sa_sint_t;
         libsais_prefetchw(
-            (if *SAm.offset((q1 >> 1 as c_int) as isize) < 0 as c_int {
+            if *SAm.offset((q1 >> 1 as c_int) as isize) < 0 as c_int {
                 Tq1
             } else {
                 &mut *SAm.offset((q1 >> 1 as c_int) as isize) as *mut sa_sint_t
-            }) as *const c_void,
+            },
         );
         let mut q2: sa_uint_t = *SA
             .offset((i as c_long + prefetch_distance + 2 as c_int as c_long) as isize)
             as sa_uint_t;
         let mut Tq2: *mut sa_sint_t = &mut *T.offset(q2 as isize) as *mut sa_sint_t;
         libsais_prefetchw(
-            (if *SAm.offset((q2 >> 1 as c_int) as isize) < 0 as c_int {
+            if *SAm.offset((q2 >> 1 as c_int) as isize) < 0 as c_int {
                 Tq2
             } else {
                 &mut *SAm.offset((q2 >> 1 as c_int) as isize) as *mut sa_sint_t
-            }) as *const c_void,
+            },
         );
         let mut q3: sa_uint_t = *SA
             .offset((i as c_long + prefetch_distance + 3 as c_int as c_long) as isize)
             as sa_uint_t;
         let mut Tq3: *mut sa_sint_t = &mut *T.offset(q3 as isize) as *mut sa_sint_t;
         libsais_prefetchw(
-            (if *SAm.offset((q3 >> 1 as c_int) as isize) < 0 as c_int {
+            if *SAm.offset((q3 >> 1 as c_int) as isize) < 0 as c_int {
                 Tq3
             } else {
                 &mut *SAm.offset((q3 >> 1 as c_int) as isize) as *mut sa_sint_t
-            }) as *const c_void,
+            },
         );
         let mut p0: sa_uint_t = *SA.offset((i + 0 as c_int) as isize) as sa_uint_t;
         let mut s0: sa_sint_t = *SAm.offset((p0 >> 1 as c_int) as isize);
@@ -9839,12 +9762,12 @@ unsafe extern "C" fn libsais_compute_phi(
         libsais_prefetchw(
             &mut *PLCP.offset(
                 *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize) as isize,
-            ) as *mut sa_sint_t as *const c_void,
+            ),
         );
         libsais_prefetchw(
             &mut *PLCP.offset(
                 *SA.offset((i + prefetch_distance + 1 as c_int as c_long) as isize) as isize,
-            ) as *mut sa_sint_t as *const c_void,
+            ),
         );
         *PLCP.offset(*SA.offset((i + 0 as c_int as c_long) as isize) as isize) = k;
         k = *SA.offset((i + 0 as c_int as c_long) as isize);
@@ -9853,12 +9776,12 @@ unsafe extern "C" fn libsais_compute_phi(
         libsais_prefetchw(
             &mut *PLCP.offset(
                 *SA.offset((i + prefetch_distance + 2 as c_int as c_long) as isize) as isize,
-            ) as *mut sa_sint_t as *const c_void,
+            ),
         );
         libsais_prefetchw(
             &mut *PLCP.offset(
                 *SA.offset((i + prefetch_distance + 3 as c_int as c_long) as isize) as isize,
-            ) as *mut sa_sint_t as *const c_void,
+            ),
         );
         *PLCP.offset(*SA.offset((i + 2 as c_int as c_long) as isize) as isize) = k;
         k = *SA.offset((i + 2 as c_int as c_long) as isize);
@@ -9907,8 +9830,7 @@ unsafe extern "C" fn libsais_compute_plcp(
     j = omp_block_start + omp_block_size - prefetch_distance;
     while i < j {
         libsais_prefetchw(
-            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
+            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize),
         );
         libsais_prefetchr(
             &*T.offset((*PLCP.offset((i + prefetch_distance) as isize) as c_long + l) as isize),
@@ -9970,8 +9892,7 @@ unsafe extern "C" fn libsais_compute_plcp_gsa(
     j = omp_block_start + omp_block_size - prefetch_distance;
     while i < j {
         libsais_prefetchw(
-            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
+            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize),
         );
         libsais_prefetchr(
             &*T.offset((*PLCP.offset((i + prefetch_distance) as isize) as c_long + l) as isize),
@@ -10033,8 +9954,7 @@ unsafe extern "C" fn libsais_compute_plcp_int(
     j = omp_block_start + omp_block_size - prefetch_distance;
     while i < j {
         libsais_prefetchw(
-            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize)
-                as *mut sa_sint_t as *const c_void,
+            &mut *PLCP.offset((i + 2 as c_int as c_long * prefetch_distance) as isize),
         );
         libsais_prefetchr(
             &*T.offset((*PLCP.offset((i + prefetch_distance) as isize) as c_long + l) as isize),
@@ -10093,9 +10013,7 @@ unsafe extern "C" fn libsais_compute_lcp(
     j = omp_block_start + omp_block_size - prefetch_distance - 3 as c_int as c_long;
     while i < j {
         libsais_prefetchr(&*SA.offset((i + 2 as c_int as c_long * prefetch_distance) as isize));
-        libsais_prefetchw(
-            &mut *LCP.offset((i + prefetch_distance) as isize) as *mut sa_sint_t as *const c_void,
-        );
+        libsais_prefetchw(&mut *LCP.offset((i + prefetch_distance) as isize));
         libsais_prefetchr(
             &*PLCP.offset(
                 *SA.offset((i + prefetch_distance + 0 as c_int as c_long) as isize) as isize,
