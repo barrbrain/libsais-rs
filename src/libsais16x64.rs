@@ -137,8 +137,20 @@ pub type size_t = std::ffi::c_ulong;
 pub type ptrdiff_t = std::ffi::c_long;
 pub type sa_uint_t = uint64_t;
 pub type fast_uint_t = uint64_t;
-unsafe fn libsais16x64_prefetchr(_: *const std::ffi::c_void) {}
-unsafe fn libsais16x64_prefetchw(_: *const std::ffi::c_void) {}
+unsafe fn libsais16x64_prefetchr(p: *const std::ffi::c_void) {
+    #[cfg(target_arch = "x86_64")]
+    core::arch::x86_64::_mm_prefetch(
+        core::mem::transmute::<*const std::ffi::c_void, *mut i8>(p),
+        core::arch::x86_64::_MM_HINT_T0,
+    );
+}
+unsafe fn libsais16x64_prefetchw(p: *const std::ffi::c_void) {
+    #[cfg(target_arch = "x86_64")]
+    core::arch::x86_64::_mm_prefetch(
+        core::mem::transmute::<*const std::ffi::c_void, *mut i8>(p),
+        core::arch::x86_64::_MM_HINT_ET0,
+    );
+}
 unsafe extern "C" fn libsais16x64_align_up(
     mut address: *const std::ffi::c_void,
     mut alignment: size_t,

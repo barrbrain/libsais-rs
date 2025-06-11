@@ -100,8 +100,20 @@ pub struct LIBSAIS_UNBWT_CONTEXT {
     pub buckets: *mut sa_uint_t,
     pub threads: fast_sint_t,
 }
-unsafe fn libsais16_prefetchr(_: *const std::ffi::c_void) {}
-unsafe fn libsais16_prefetchw(_: *const std::ffi::c_void) {}
+unsafe fn libsais16_prefetchr(p: *const std::ffi::c_void) {
+    #[cfg(target_arch = "x86_64")]
+    core::arch::x86_64::_mm_prefetch(
+        core::mem::transmute::<*const std::ffi::c_void, *mut i8>(p),
+        core::arch::x86_64::_MM_HINT_T0,
+    );
+}
+unsafe fn libsais16_prefetchw(p: *const std::ffi::c_void) {
+    #[cfg(target_arch = "x86_64")]
+    core::arch::x86_64::_mm_prefetch(
+        core::mem::transmute::<*const std::ffi::c_void, *mut i8>(p),
+        core::arch::x86_64::_MM_HINT_ET0,
+    );
+}
 unsafe extern "C" fn libsais16_align_up(
     mut address: *const std::ffi::c_void,
     mut alignment: size_t,
