@@ -1,0 +1,12 @@
+[package]
+name = "libsais"
+version = "2.10.1"
+edition = "2021"
+license = "Apache-2.0"
+authors = ["Ilya Grebnov <ilya.grebnov@gmail.com>", "David Michael Barr <b@rr-dav.id.au>"]
+exclude = ["CMakeLists.txt", "/include", "*.c", ".gitignore"]
+
+[dependencies]
+
+[lib]
+path = "src/lib.rs"
